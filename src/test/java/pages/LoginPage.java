@@ -9,9 +9,12 @@ public class LoginPage {
     private WebElement email;
     @FindBy(id = "exampleInputPassword1")
     private WebElement password;
+    @FindBy(name = "login")
+    private WebElement loginButton;
 
     public void login(){
     email.sendKeys("teamd6@gmail.com");
     password.sendKeys("teamd");
+    loginButton.click();
     }
 }
