@@ -1,4 +1,4 @@
-@details
+@expenses
 
 Feature:Preapproval Details feature
 
@@ -6,10 +6,10 @@ Feature:Preapproval Details feature
   page of my bank's mortgage application to provide the necessary
   information to get pre-approved for a mortgage loan
 
+  Background: Common steps for all scenarios
+    Given The user is on the logging page
+    When User entering email and password
 
-  Scenario: User successfully signs in with valid credentials
-  Given User logging in
-#  When User successfully signs in with valid credentials
-#  And clicks on the sign-in button
-#  Then the user is redirected to the home page
+  Scenario:
+
 

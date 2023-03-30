@@ -15,6 +15,9 @@ public class LoginPage {
     private WebElement email;
     @FindBy(id = "exampleInputPassword1")
     private WebElement password;
+
+    public WebElement getLoginButton() {return loginButton; }
+
     @FindBy(name = "login")
     private WebElement loginButton;
 
@@ -24,4 +27,5 @@ public class LoginPage {
     password.sendKeys("teamd");
     loginButton.click();
     }
+
 }
