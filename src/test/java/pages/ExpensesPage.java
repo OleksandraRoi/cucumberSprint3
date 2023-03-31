@@ -24,6 +24,8 @@ public class ExpensesPage {
     private WebElement monthlyMortgagePayment;
     @FindBy(xpath = "//a[@href='#finish']")
     private WebElement saveButton;
+    @FindBy(id = "monthlyrentalpayment-error")
+    private WebElement errorMessage;
 
     public WebElement getTextOnExpensesPage() { return textOnExpensesPage; }
     public WebElement getRentCheckBox() {return rentCheckBox;}
