@@ -33,27 +33,32 @@ Feature:Expenses feature
   Scenario: User should write only positive number is field Monthly Rental Payment or get an error message
     Given User is locating expenses page
     When User selecting Rent check box
-    And User is entering numeric value less than one
-    Then User should get error message Please enter a value greater than or equal to one
-    When User is entering non numeric value
-    Then User should get error message Please enter a valid number
-#
-#  Scenario: User should write only positive number is field Monthly Mortgage Payment or get an error message
-#    Given User is locating expenses page
-#    When User selecting Own check box
-#    And User is entering numeric value less than one
-#    Then User should get error message Please enter a value greater than or equal to one
-#    When User is entering non numeric value
-#    Then User should get error message Please enter a valid number
-#
-#    Scenario: User should not be able to proceed to the next page if the field for the selected option (Monthly Rental Payment or First Mortgage Total Payment) is empty
-#      Given User is locating expenses page
-#      When User leaves field Monthly Rental Payment or First Mortgage Total Payment empty
-#      Then User should not be able to move to the next page
-#      And User should see THIS FIELD IS REQUIRED message displayed under the empty field.
+    And User is entering numeric value less than one in Rent
+    Then User should get error message Please enter a value greater than or equal to one in Rent
+    When User is entering non numeric value in Rent
+    Then User should get error message Please enter a valid number in Rent
 
-#  Scenario: User should be able to return on previous page by clicking Previous button
-#    Given User is locating expenses page
-#    When User click on Previous button
-#    Then User is returned to Personal Information page
+  Scenario: User should write only positive number is field Monthly Mortgage Payment or get an error message
+    Given User is locating expenses page
+    When User selecting Own check box
+    And User is entering numeric value less than one in Own
+    Then User should get error message Please enter a value greater than or equal to one in Own
+    When User is entering non numeric value in Own
+    Then User should get error message Please enter a valid number in Own
+
+    Scenario: User should not be able to proceed to the next page if the field for the selected option (Monthly Rental Payment or Monthly Mortgage Payment) is empty
+      Given User is locating expenses page
+      When User selecting Rent check box
+      And User leaves field Monthly Rental Payment empty
+      Then Clicks on Save button
+      And User should see THIS FIELD IS REQUIRED message displayed under the empty field in Rent.
+      When User selecting Own check box
+      And User leaves field Monthly Mortgage Payment empty
+      Then Clicks on Save button
+      And User should see THIS FIELD IS REQUIRED message displayed under the empty field in Own.
+
+  Scenario: User should be able to return on previous page by clicking Previous button
+    Given User is locating expenses page
+    When User click on Previous button
+    Then User is returned to Personal Information page
 

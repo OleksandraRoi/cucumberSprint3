@@ -41,7 +41,6 @@ public class PathPage {
     private WebElement phoneNumber;
 
 
-
     public void path(){
         Faker faker = new Faker();
         Random random =  new Random();
