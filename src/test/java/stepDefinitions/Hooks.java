@@ -19,12 +19,12 @@ public class Hooks {
         Driver.getDriver().get(ConfigReader.getProperty("homepage"));
     }
 
-    @After
-    public void tearDown(Scenario scenario){
-        if(scenario.isFailed()){
-           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-           scenario.attach(screenshotFile, "image/png", "screenshot");
-        }
-        Driver.quitDriver();
-    }
+//    @After
+//    public void tearDown(Scenario scenario){
+//        if(scenario.isFailed()){
+//           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+//           scenario.attach(screenshotFile, "image/png", "screenshot");
+//        }
+//        Driver.quitDriver();
+//    }
 }
