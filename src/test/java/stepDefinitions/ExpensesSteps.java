@@ -25,14 +25,14 @@ public class ExpensesSteps {
     }
     @Given("The user is on Expenses page")
     public void the_user_is_on_expenses_page() {
-        Assert.assertTrue(new ExpensesPage().getExpenses().isSelected());
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getExpenses().getText()));
     }
     @When("User selects Rent")
     public void user_selects_rent() {
         new ExpensesPage().rentCheckBoxClick();
     }
     @Then("Own should not be selected")
-    public void own_should_not_be_selected(String string) {
+    public void own_should_not_be_selected() {
         Assert.assertFalse(new ExpensesPage().getOwnCheckBox().isSelected());
     }
     @When("User selects Own")
@@ -40,10 +40,9 @@ public class ExpensesSteps {
         new ExpensesPage().ownCheckBoxClick();
     }
     @Then("Rent should not be selected")
-    public void rent_should_not_be_selected(String string) {
+    public void rent_should_not_be_selected() {
         Assert.assertFalse(new ExpensesPage().getRentCheckBox().isSelected());
     }
-
     @When("User selecting Rent check box")
     public void user_selecting_rent_check_box() {
         new ExpensesPage().rentCheckBoxClick();
@@ -54,7 +53,8 @@ public class ExpensesSteps {
     }
     @Then("Clicks on Save button")
     public void clicks_on_save_button() {
-    new ExpensesPage().saveClick();
+        new ExpensesPage().saveClick();
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getTextAfterSaveButton().getText()));
     }
 
     @When("User selecting Own check box")
@@ -71,9 +71,9 @@ public class ExpensesSteps {
     new ExpensesPage().monthlyRentalPaymentIncorrectInput();
     new ExpensesPage().saveClick();
     }
-    @Then("User should get error message Please enter a value greater than or equal to one in Rent")
-    public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_one_in_rent() {
-    Assert.assertEquals(new ExpensesPage().getErrorMessageRent().getText(), "PLEASE ENTER A VALUE GREATER THAN OR EQUAL TO 1.");
+    @Then("User should get error message Please enter a value greater than or equal to zero in Rent")
+    public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_zero_in_rent() {
+    Assert.assertEquals(new ExpensesPage().getErrorMessageRent().getText(), "PLEASE ENTER A VALUE GREATER THAN OR EQUAL TO 0.");
     }
     @When("User is entering non numeric value in Rent")
     public void user_is_entering_non_numeric_value_in_rent() {
@@ -90,9 +90,9 @@ public class ExpensesSteps {
         new ExpensesPage().monthlyMortgagePaymentIncorrectInput();
         new ExpensesPage().saveClick();
     }
-    @Then("User should get error message Please enter a value greater than or equal to one in Own")
-    public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_one_in_own() {
-        Assert.assertEquals(new ExpensesPage().getErrorMessageOwn().getText(), "PLEASE ENTER A VALUE GREATER THAN OR EQUAL TO 1.");
+    @Then("User should get error message Please enter a value greater than or equal to zero in Own")
+    public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_zero_in_own() {
+        Assert.assertEquals(new ExpensesPage().getErrorMessageOwn().getText(), "PLEASE ENTER A VALUE GREATER THAN OR EQUAL TO 0.");
     }
     @When("User is entering non numeric value in Own")
     public void user_is_entering_non_numeric_value_in_own() {
@@ -106,7 +106,6 @@ public class ExpensesSteps {
 
     @When("User leaves field Monthly Rental Payment empty")
     public void user_leaves_field_monthly_rental_payment_empty() {
-        //new ExpensesPage().monthlyRentalPaymentClick();
         Assert.assertEquals("", new ExpensesPage().getMonthlyRentalPayment().getAttribute("value"));
         new ExpensesPage().saveClick();
     }
@@ -116,7 +115,7 @@ public class ExpensesSteps {
     }
     @When("User leaves field Monthly Mortgage Payment empty")
     public void user_leaves_field_monthly_mortgage_payment_empty() {
-        new ExpensesPage().monthlyMortgagePaymentClick();
+        Assert.assertEquals("", new ExpensesPage().getMonthlyMortgagePayment().getAttribute("value"));
         new ExpensesPage().saveClick();
 
     }
@@ -131,6 +130,6 @@ public class ExpensesSteps {
     }
     @Then("User is returned to Personal Information page")
     public void user_is_returned_to_personal_information_page() {
-        Assert.assertTrue(new ExpensesPage().getSelectedPage().isSelected());
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getPersonalInfo().getText()));
     }
 }

@@ -13,8 +13,10 @@ public class ExpensesPage {
     public ExpensesPage(){PageFactory.initElements(Driver.getDriver(), this);}
 
 
-    @FindBy(xpath = "//li[@class='last current']")
+    @FindBy(xpath = "(//h6[@class='py-50'])[4]")
     private WebElement expenses;
+    @FindBy(xpath = "(//h6[@class='py-50'])[2]")
+    private WebElement personalInfo;
     @FindBy(xpath = "//label[@for='expense1']")
     private WebElement rentCheckBox;
     @FindBy(xpath = "//label[@for='expense2']")
@@ -31,10 +33,10 @@ public class ExpensesPage {
     private WebElement errorMessageOwn;
     @FindBy(xpath = "//a[@href='#previous']")
     private WebElement previousButton;
-    @FindBy(xpath = "//li[@class='done']")
-    private WebElement personalInfo;
     @FindBy(xpath = "(//li[@role='tab'])[2]")
     private WebElement selectedPage;
+    @FindBy(xpath = "//h6[@class='pb-50']")
+    private WebElement textAfterSaveButton;
 
 
     public WebElement getExpenses() {return expenses;}
@@ -45,6 +47,7 @@ public class ExpensesPage {
     public WebElement getPersonalInfo() {return personalInfo;}
     public WebElement getMonthlyRentalPayment() {return monthlyRentalPayment;}
     public WebElement getMonthlyMortgagePayment() {return monthlyMortgagePayment;}
+    public WebElement getTextAfterSaveButton() {return textAfterSaveButton;}
 
     public void rentCheckBoxClick(){rentCheckBox.click();}
     public void ownCheckBoxClick(){ownCheckBox.click();}
@@ -63,10 +66,10 @@ public class ExpensesPage {
     public void saveClick(){saveButton.click();}
 
     public void monthlyRentalPaymentIncorrectInput(){
-        monthlyRentalPayment.sendKeys(String.valueOf(0));
+        monthlyRentalPayment.sendKeys(String.valueOf(-1));
     }
     public void monthlyMortgagePaymentIncorrectInput(){
-        monthlyMortgagePayment.sendKeys(String.valueOf(0));
+        monthlyMortgagePayment.sendKeys(String.valueOf(-1));
     }
 
     public void monthlyRentalPaymentNonNumericInput(){
@@ -77,9 +80,5 @@ public class ExpensesPage {
         monthlyMortgagePayment.sendKeys(Keys.BACK_SPACE);
         monthlyMortgagePayment.sendKeys(".");
     }
-
-    public void monthlyRentalPaymentClick(){monthlyRentalPayment.click();}
-    public void monthlyMortgagePaymentClick(){monthlyMortgagePayment.click();}
     public void previousButtonClick(){previousButton.click();}
-
 }
