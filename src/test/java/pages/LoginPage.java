@@ -11,14 +11,14 @@ public class LoginPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(id = "exampleInputEmail1")
+    @FindBy(id = "email")
     private WebElement email;
-    @FindBy(id = "exampleInputPassword1")
+    @FindBy(id = "password")
     private WebElement password;
 
     public WebElement getLoginButton() {return loginButton; }
 
-    @FindBy(name = "login")
+    @FindBy(id = "signin")
     private WebElement loginButton;
 
 

@@ -1,4 +1,3 @@
-@expenses
 
 Feature:Expenses feature
 
@@ -11,6 +10,7 @@ Feature:Expenses feature
     When User entering email and password
     Then User is locating expenses page
 
+
   Scenario: User can select only one check box
     Given The user is on Expenses page
     When User selects Rent
@@ -18,11 +18,13 @@ Feature:Expenses feature
     When User selects Own
     Then Rent should not be selected
 
+@a
   Scenario: User successfully filling out Expenses form with Rent check box selected
     Given User is locating expenses page
     When User selecting Rent check box
     Then User entering numeric Monthly Rental Payment
     And Clicks on Save button
+
 
   Scenario: User successfully filling out Expenses form with Own check box selected
     Given User is locating expenses page

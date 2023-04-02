@@ -39,6 +39,8 @@ public class PathPage {
     private WebElement searchBar;
     @FindBy(id = "b_cell")
     private WebElement phoneNumber;
+    @FindBy(id = "b_home")
+    private WebElement homeNumber;
 
 
     public void path(){
@@ -59,6 +61,7 @@ public class PathPage {
         maritalStatus.click();
         searchBar.sendKeys("Married", Keys.ENTER);
         phoneNumber.sendKeys(faker.phoneNumber().cellPhone());
+        homeNumber.sendKeys(faker.phoneNumber().cellPhone());
         nextButton.click();
     }
 

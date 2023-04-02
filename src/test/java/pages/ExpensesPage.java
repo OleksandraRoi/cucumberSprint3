@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +13,7 @@ public class ExpensesPage {
     public ExpensesPage(){PageFactory.initElements(Driver.getDriver(), this);}
 
 
-    @FindBy(linkText = "Expenses")
+    @FindBy(xpath = "//li[@class='last current']")
     private WebElement expenses;
     @FindBy(xpath = "//label[@for='expense1']")
     private WebElement rentCheckBox;
@@ -30,8 +31,10 @@ public class ExpensesPage {
     private WebElement errorMessageOwn;
     @FindBy(xpath = "//a[@href='#previous']")
     private WebElement previousButton;
-    @FindBy(linkText = "Personal Information")
+    @FindBy(xpath = "//li[@class='done']")
     private WebElement personalInfo;
+    @FindBy(xpath = "(//li[@role='tab'])[2]")
+    private WebElement selectedPage;
 
 
     public WebElement getExpenses() {return expenses;}
@@ -40,49 +43,43 @@ public class ExpensesPage {
     public WebElement getErrorMessageRent() {return errorMessageRent;}
     public WebElement getErrorMessageOwn() {return errorMessageOwn;}
     public WebElement getPersonalInfo() {return personalInfo;}
+    public WebElement getMonthlyRentalPayment() {return monthlyRentalPayment;}
+    public WebElement getMonthlyMortgagePayment() {return monthlyMortgagePayment;}
 
     public void rentCheckBoxClick(){rentCheckBox.click();}
     public void ownCheckBoxClick(){ownCheckBox.click();}
+    public WebElement getSelectedPage() {return selectedPage;}
+
     public void monthlyRentalPaymentCorrectInput(){
         Random random =  new Random();
-        monthlyRentalPayment.click();
         int rent = random.nextInt(2501) + 2500;
         monthlyRentalPayment.sendKeys(String.valueOf(rent));
     }
     public void monthlyMortgagePaymentCorrectInput(){
         Random random =  new Random();
-        monthlyMortgagePayment.click();
         int own = random.nextInt(3501) + 2500;
         monthlyMortgagePayment.sendKeys(String.valueOf(own));
     }
     public void saveClick(){saveButton.click();}
 
     public void monthlyRentalPaymentIncorrectInput(){
-        Random random =  new Random();
-        monthlyRentalPayment.click();
-        int rent = random.nextInt(0) + -10;
-        monthlyRentalPayment.sendKeys(String.valueOf(rent));
+        monthlyRentalPayment.sendKeys(String.valueOf(0));
     }
     public void monthlyMortgagePaymentIncorrectInput(){
-        Random random =  new Random();
-        monthlyMortgagePayment.click();
-        int own = random.nextInt(0) + -10;
-        monthlyMortgagePayment.sendKeys(String.valueOf(own));
+        monthlyMortgagePayment.sendKeys(String.valueOf(0));
     }
 
     public void monthlyRentalPaymentNonNumericInput(){
-        Random random =  new Random();
-        monthlyRentalPayment.click();
-        char rent = (char) (random.nextInt(58) + 68);
-        monthlyRentalPayment.sendKeys(String.valueOf(rent));
+        monthlyRentalPayment.sendKeys(Keys.BACK_SPACE);
+        monthlyRentalPayment.sendKeys(".");
     }
     public void monthlyMortgagePaymentNonNumericInput(){
-        Random random =  new Random();
-        monthlyMortgagePayment.click();
-        char own = (char) (random.nextInt(58) + 68);
-        monthlyMortgagePayment.sendKeys(String.valueOf(own));
+        monthlyMortgagePayment.sendKeys(Keys.BACK_SPACE);
+        monthlyMortgagePayment.sendKeys(".");
     }
 
+    public void monthlyRentalPaymentClick(){monthlyRentalPayment.click();}
+    public void monthlyMortgagePaymentClick(){monthlyMortgagePayment.click();}
     public void previousButtonClick(){previousButton.click();}
 
 }
