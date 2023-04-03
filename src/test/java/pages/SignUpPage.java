@@ -31,6 +31,9 @@ public class SignUpPage {
     @FindBy(id = "sign-up-button")
     public WebElement signUpButton;
 
+    @FindBy(xpath = "/html/body/div[2]/div[2]/div[2]/section/div/div/div/div[1]/div/div[3]/div/div/a")
+    public WebElement registrationSignInLink;
+
 
     public void clickSignUpLink() {
         signUpLink.click();
@@ -52,5 +55,8 @@ public class SignUpPage {
         signUpButton.click();
     }
 
+    public void clickRegistrationSignInLink() {
+        registrationSignInLink.click();
+    }
 
 }
