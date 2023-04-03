@@ -32,10 +32,7 @@ public class SignInStepDefs {
         Assert.assertTrue(new SignInPage().getWelcomeMessage().isDisplayed());
     }
 
-//    @Given("User is on Sign in page")
-//    public void user_is_on_sign_in_page() {
-//        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new LoginPage().getLoginButton().getText()));
-//    }
+
 
     @And("sign in page should have 2 inputs email and password")
     public void sign_in_page_should_have_2_inputs_email_and_password() {
@@ -44,10 +41,7 @@ public class SignInStepDefs {
         Assert.assertEquals("Password", new SignInPage().Password().getAttribute("placeholder"));
     }
 
-//    @Given("User is on Sign in page")
-//    public void user_is_on_sign_in_page() {
-//        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new LoginPage().getLoginButton().getText()));
-//    }
+
 
     @When("User enters incorrect email and password")
     public void user_enters_incorrect_email_and_password() {
@@ -61,21 +55,13 @@ public class SignInStepDefs {
      new SignInPage().clickOnSignInButton();
     }
 
-    @Then("User should be not able to proceed")
+    @Then("User should not be able to proceed")
     public void user_should_be_not_able_to_proceed() {
 
-        WebElement loginFailedElement = Driver.getDriver().findElement(By.xpath("//*[@id=\"auth-login\"]/div/div/div/div[1]/div/div[1]"));
-                   Assert.assertTrue(loginFailedElement.isDisplayed());
+        SignInPage signInPage = new SignInPage();
+        Assert.assertTrue(new SignInPage().getLoginFailedElement().isDisplayed());
 
-
-
-//        Assert.assertTrue(new SignInPage().getLoginFailedMessage().isDisplayed());
     }
-
-//    @Given("User is on Sign in page")
-//    public void user_is_on_sign_in_page() {
-//        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new LoginPage().getLoginButton().getText()));
-//    }
 
     @When("User leaves email blank")
     public void user_is_living_email_blank() {

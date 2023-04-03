@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,11 +26,10 @@ public class SignInPage {
 
     }
 
-    @FindBy(xpath = "//h4[.='Login Failed']")
-    private WebElement loginFailedMessage;
-
-    public WebElement getLoginFailedMessage() {
-        return loginFailedMessage;
+    @FindBy (xpath ="//*[@id=\"auth-login\"]/div/div/div/div[1]/div/div[1]" )
+    private WebElement loginFailedElement;
+    public WebElement getLoginFailedElement() {
+        return loginFailedElement;
     }
 
     @FindBy(xpath = "//input")
@@ -86,7 +86,8 @@ public class SignInPage {
         SignInButton.click();
 
     }
-}
+
+    }
 
 
 

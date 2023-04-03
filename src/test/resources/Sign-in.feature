@@ -19,7 +19,7 @@ As a potential user,I should be able to sign in to my mortgage account, to acces
     Given User is on Sign in page
     When User enters incorrect email and password
     Then clicks on Sign In button
-    And User should be not able to proceed
+    And User should not be able to proceed
 
   @scenario4
   Scenario: User should not be able to sign up if he/she did not enter an email
