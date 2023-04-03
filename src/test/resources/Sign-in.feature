@@ -1,3 +1,4 @@
+@regression
 Feature: Sign in feature
 
 As a potential user,I should be able to sign in to my mortgage account, to access my account information and perform necessary actions.
