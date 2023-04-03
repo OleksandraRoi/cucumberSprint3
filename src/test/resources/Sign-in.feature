@@ -20,7 +20,7 @@ As a potential user,I should be able to sign in to my mortgage account, to acces
     Then clicks on Sign In button
     And User should be not able to proceed
 
-  Scenario: User should be able to sign up if he/she did not enter an email
+  Scenario: User should not be able to sign up if he/she did not enter an email
     Given User is on Sign in page
     When User is living email blank
     Then user should not be able to click on submit

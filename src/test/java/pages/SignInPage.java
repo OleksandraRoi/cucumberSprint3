@@ -83,7 +83,6 @@ public class SignInPage {
     private WebElement SignInButton;
 
     public void clickOnSignInButton() {
-
         SignInButton.click();
 
     }

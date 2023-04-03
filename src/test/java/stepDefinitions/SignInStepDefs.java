@@ -72,6 +72,7 @@ public class SignInStepDefs {
 
     @When("User is living email blank")
     public void user_is_living_email_blank() {
+        new SignInPage().Password();
         new SignInPage().clickOnSignInButton();
     }
 
