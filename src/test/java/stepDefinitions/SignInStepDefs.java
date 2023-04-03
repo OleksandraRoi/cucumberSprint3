@@ -4,6 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.LoginPage;
 import pages.SignInPage;
@@ -38,7 +40,7 @@ public class SignInStepDefs {
     @And("sign in page should have 2 inputs email and password")
     public void sign_in_page_should_have_2_inputs_email_and_password() {
         Assert.assertEquals(2, new SignInPage().getTwoInputs().size());
-        Assert.assertEquals("Email", new SignInPage().Email().getAttribute("placeholder"));
+        Assert.assertEquals("Email address", new SignInPage().Email().getAttribute("placeholder"));
         Assert.assertEquals("Password", new SignInPage().Password().getAttribute("placeholder"));
     }
 
@@ -62,7 +64,12 @@ public class SignInStepDefs {
     @Then("User should be not able to proceed")
     public void user_should_be_not_able_to_proceed() {
 
-        Assert.assertTrue(new SignInPage().getLoginFailedMessage().isDisplayed());
+        WebElement loginFailedElement = Driver.getDriver().findElement(By.xpath("//*[@id=\"auth-login\"]/div/div/div/div[1]/div/div[1]"));
+                   Assert.assertTrue(loginFailedElement.isDisplayed());
+
+
+
+//        Assert.assertTrue(new SignInPage().getLoginFailedMessage().isDisplayed());
     }
 
 //    @Given("User is on Sign in page")
@@ -70,10 +77,11 @@ public class SignInStepDefs {
 //        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new LoginPage().getLoginButton().getText()));
 //    }
 
-    @When("User is living email blank")
+    @When("User leaves email blank")
     public void user_is_living_email_blank() {
         new SignInPage().Password();
         new SignInPage().clickOnSignInButton();
+
     }
 
     @Then("user should not be able to click on submit")
