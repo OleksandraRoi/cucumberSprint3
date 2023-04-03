@@ -86,9 +86,8 @@ Assert.assertFalse(new SignInPage().getSignInButton().isEnabled(),"The sign-in b
     }
         @Then("user should  be able to click on submit and proceed")
         public void user_should_be_able_to_click_on_submit_and_proceed() {
-            new SignInPage().Email().sendKeys("teamd6@gmail.com");
-            new SignInPage().Password().sendKeys("teamd");
-        Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/index.php",Driver.getDriver().getCurrentUrl());
+        new SignInPage().clickOnSignInButton();
+        Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/dashboard.php",Driver.getDriver().getCurrentUrl());
     }
 
 }
