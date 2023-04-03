@@ -45,9 +45,9 @@ public class PathPage {
     private WebElement dateOfBirth;
 
 
-    public void path(){
+    public void path1() {
         Faker faker = new Faker();
-        Random random =  new Random();
+        Random random = new Random();
         mortgageButton.click();
         realtorInfo.sendKeys(faker.name().username());
         int housePrice = random.nextInt(500001) + 500000;
@@ -55,7 +55,9 @@ public class PathPage {
         int downpaymantPrice = random.nextInt(50001) + 50000;
         downpaymant.sendKeys(String.valueOf(downpaymantPrice));
         nextButton.click();
-
+    }
+    public void path2(){
+        Faker faker = new Faker();
         firstName.sendKeys(faker.name().firstName());
         lastName.sendKeys(faker.name().lastName());
         email.sendKeys(faker.internet().emailAddress());
