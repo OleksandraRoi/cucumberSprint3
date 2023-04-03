@@ -41,6 +41,8 @@ public class PathPage {
     private WebElement phoneNumber;
     @FindBy(id = "b_home")
     private WebElement homeNumber;
+    @FindBy(id = "b_dob")
+    private WebElement dateOfBirth;
 
 
     public void path(){
@@ -57,6 +59,7 @@ public class PathPage {
         firstName.sendKeys(faker.name().firstName());
         lastName.sendKeys(faker.name().lastName());
         email.sendKeys(faker.internet().emailAddress());
+        dateOfBirth.sendKeys("02021992");
         ssn.sendKeys(faker.numerify("#########"));
         maritalStatus.click();
         searchBar.sendKeys("Married", Keys.ENTER);
@@ -64,6 +67,4 @@ public class PathPage {
         homeNumber.sendKeys(faker.phoneNumber().cellPhone());
         nextButton.click();
     }
-
-
 }
