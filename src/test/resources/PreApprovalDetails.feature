@@ -1,4 +1,4 @@
-@max
+@regression @max
 Feature: PreApproval Details
 
   Background: default steps till pre preapproval details

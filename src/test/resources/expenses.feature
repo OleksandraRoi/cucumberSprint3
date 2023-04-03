@@ -1,4 +1,4 @@
-@a
+@regression
 Feature:Expenses feature
 
   As a potential homebuyer, I want to use the Preapproval Details
