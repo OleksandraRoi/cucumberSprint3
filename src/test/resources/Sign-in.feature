@@ -27,7 +27,11 @@ As a potential user,I should be able to sign in to my mortgage account, to acces
     When User leaves email blank
     Then user should not be able to click on submit and proceed
 
-
+  @scenario5
+  Scenario: User should be redirected to another page with correct email and password
+    Given User is on Sign in page
+    When User enters correct email and password
+    Then user should  be able to click on submit and proceed
 
 
 

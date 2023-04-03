@@ -77,8 +77,18 @@ public class SignInStepDefs {
     SignInPage signInPage = new SignInPage();
         new SignInPage().emailInput(" ");
         new SignInPage().Password().sendKeys("teamd");
-//Assert.assertEquals(ConfigReader.getProperty("homepage"),Driver.getDriver().getCurrentUrl());
 Assert.assertFalse(new SignInPage().getSignInButton().isEnabled(),"The sign-in button is not enabled when the email field is blank and the password field is filled up.");
+    }
+    @When("User enters correct email and password")
+    public void user_enters_correct_email_and_password() {
+        new SignInPage().Email().sendKeys("teamd6@gmail.com");
+        new SignInPage().Password().sendKeys("teamd");
+    }
+        @Then("user should  be able to click on submit and proceed")
+        public void user_should_be_able_to_click_on_submit_and_proceed() {
+            new SignInPage().Email().sendKeys("teamd6@gmail.com");
+            new SignInPage().Password().sendKeys("teamd");
+        Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/index.php",Driver.getDriver().getCurrentUrl());
     }
 
 }
