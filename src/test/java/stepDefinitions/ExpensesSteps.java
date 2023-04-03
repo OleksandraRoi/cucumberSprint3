@@ -21,7 +21,8 @@ public class ExpensesSteps {
     }
     @Then("User is locating expenses page")
     public void user_is_locating_expenses_page() {
-    new PathPage().path();
+        new PathPage().path1();
+        new PathPage().path2();
     }
     @Given("The user is on Expenses page")
     public void the_user_is_on_expenses_page() {
