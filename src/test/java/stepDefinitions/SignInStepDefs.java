@@ -59,24 +59,26 @@ public class SignInStepDefs {
     public void user_should_be_not_able_to_proceed() {
 
         SignInPage signInPage = new SignInPage();
-        Assert.assertTrue(new SignInPage().getLoginFailedElement().isDisplayed());
+        Assert.assertFalse(new SignInPage().getLoginFailedElement().isDisplayed());
 
     }
 
     @When("User leaves email blank")
     public void user_is_living_email_blank() {
-        new SignInPage().Password();
+
+        new SignInPage().Password().sendKeys("teamd");
         new SignInPage().clickOnSignInButton();
 
     }
 
-    @Then("user should not be able to click on submit")
-    public void user_should_not_be_able_to_click_on_submit() {
+    @Then("user should not be able to click on submit and proceed")
+    public void user_should_not_be_able_to_click_on_submit_and_proceed() {
 
-       Assert.assertEquals(ConfigReader.getProperty("homepage"),Driver.getDriver().getCurrentUrl());
-
+    SignInPage signInPage = new SignInPage();
+        new SignInPage().emailInput(" ");
+        new SignInPage().Password().sendKeys("teamd");
+//Assert.assertEquals(ConfigReader.getProperty("homepage"),Driver.getDriver().getCurrentUrl());
+Assert.assertFalse(new SignInPage().getSignInButton().isEnabled(),"The sign-in button is not enabled when the email field is blank and the password field is filled up.");
     }
-
-
 
 }

@@ -26,8 +26,9 @@ public class SignInPage {
 
     }
 
-    @FindBy (xpath ="//*[@id=\"auth-login\"]/div/div/div/div[1]/div/div[1]" )
+    @FindBy(xpath = "//*[@id=\"auth-login\"]/div/div/div/div[1]/div/div[1]")
     private WebElement loginFailedElement;
+
     public WebElement getLoginFailedElement() {
         return loginFailedElement;
     }
