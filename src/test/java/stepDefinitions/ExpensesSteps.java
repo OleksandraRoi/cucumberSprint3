@@ -8,6 +8,7 @@ import pages.ExpensesPage;
 import pages.LoginPage;
 import pages.PathPage;
 import utils.Driver;
+import utils.SeleniumUtils;
 
 public class ExpensesSteps {
 
@@ -21,8 +22,8 @@ public class ExpensesSteps {
     }
     @Then("User is locating expenses page")
     public void user_is_locating_expenses_page() {
-        new PathPage().path1();
-        new PathPage().path2();
+        new PathPage().page1();
+        new PathPage().page2();
     }
     @Given("The user is on Expenses page")
     public void the_user_is_on_expenses_page() {
@@ -30,6 +31,7 @@ public class ExpensesSteps {
     }
     @When("User selects Rent")
     public void user_selects_rent() {
+        new ExpensesPage().scrollUp();
         new ExpensesPage().rentCheckBoxClick();
     }
     @Then("Own should not be selected")
@@ -46,21 +48,23 @@ public class ExpensesSteps {
     }
     @When("User selecting Rent check box")
     public void user_selecting_rent_check_box() {
+        new ExpensesPage().scrollUp();
         new ExpensesPage().rentCheckBoxClick();
     }
     @Then("User entering numeric Monthly Rental Payment")
     public void user_entering_numeric_monthly_rental_payment() {
         new ExpensesPage().monthlyRentalPaymentCorrectInput();
     }
-    @Then("Clicks on Save button")
-    public void clicks_on_save_button() {
-        new ExpensesPage().saveClick();
-        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getTextAfterSaveButton().getText()));
+    @Then("Clicks on Next button")
+    public void clicks_on_next_button() {
+        new ExpensesPage().nextClick();
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getTextAfterNextButtonEmployment().getText()));
     }
 
     @When("User selecting Own check box")
     public void user_selecting_own_check_box() {
-       new ExpensesPage().ownCheckBoxClick();
+        new ExpensesPage().scrollUp();
+        new ExpensesPage().ownCheckBoxClick();
     }
     @Then("User entering numeric Monthly Mortgage Payment")
     public void user_entering_numeric_monthly_mortgage_payment() {
@@ -70,7 +74,7 @@ public class ExpensesSteps {
     @When("User is entering numeric value less than one in Rent")
     public void user_is_entering_numeric_value_less_than_one_in_rent() {
     new ExpensesPage().monthlyRentalPaymentIncorrectInput();
-    new ExpensesPage().saveClick();
+    new ExpensesPage().nextClick();
     }
     @Then("User should get error message Please enter a value greater than or equal to zero in Rent")
     public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_zero_in_rent() {
@@ -79,7 +83,7 @@ public class ExpensesSteps {
     @When("User is entering non numeric value in Rent")
     public void user_is_entering_non_numeric_value_in_rent() {
     new ExpensesPage().monthlyRentalPaymentNonNumericInput();
-    new ExpensesPage().saveClick();
+    new ExpensesPage().nextClick();
     }
     @Then("User should get error message Please enter a valid number in Rent")
     public void user_should_get_error_message_please_enter_a_valid_number_in_rent() {
@@ -89,7 +93,7 @@ public class ExpensesSteps {
     @When("User is entering numeric value less than one in Own")
     public void user_is_entering_numeric_value_less_than_one_in_own() {
         new ExpensesPage().monthlyMortgagePaymentIncorrectInput();
-        new ExpensesPage().saveClick();
+        new ExpensesPage().nextClick();
     }
     @Then("User should get error message Please enter a value greater than or equal to zero in Own")
     public void user_should_get_error_message_please_enter_a_value_greater_than_or_equal_to_zero_in_own() {
@@ -98,7 +102,7 @@ public class ExpensesSteps {
     @When("User is entering non numeric value in Own")
     public void user_is_entering_non_numeric_value_in_own() {
         new ExpensesPage().monthlyMortgagePaymentNonNumericInput();
-        new ExpensesPage().saveClick();
+        new ExpensesPage().nextClick();
     }
     @Then("User should get error message Please enter a valid number in Own")
     public void user_should_get_error_message_please_enter_a_valid_number_in_own() {
@@ -108,7 +112,7 @@ public class ExpensesSteps {
     @When("User leaves field Monthly Rental Payment empty")
     public void user_leaves_field_monthly_rental_payment_empty() {
         Assert.assertEquals("", new ExpensesPage().getMonthlyRentalPayment().getAttribute("value"));
-        new ExpensesPage().saveClick();
+        new ExpensesPage().nextClick();
     }
     @Then("User should see THIS FIELD IS REQUIRED message displayed under the empty field in Rent.")
     public void user_should_see_this_field_is_required_message_displayed_under_the_empty_field_in_rent() {
@@ -117,7 +121,7 @@ public class ExpensesSteps {
     @When("User leaves field Monthly Mortgage Payment empty")
     public void user_leaves_field_monthly_mortgage_payment_empty() {
         Assert.assertEquals("", new ExpensesPage().getMonthlyMortgagePayment().getAttribute("value"));
-        new ExpensesPage().saveClick();
+        new ExpensesPage().nextClick();
 
     }
     @Then("User should see THIS FIELD IS REQUIRED message displayed under the empty field in Own.")

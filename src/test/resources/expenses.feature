@@ -1,4 +1,4 @@
-@regression
+
 Feature:Expenses feature
 
   As a potential homebuyer, I want to use the Preapproval Details
@@ -17,18 +17,18 @@ Feature:Expenses feature
     Then Own should not be selected
     When User selects Own
     Then Rent should not be selected
-
+@a
   Scenario: User successfully filling out Expenses form with Rent check box selected
     Given The user is on Expenses page
     When User selecting Rent check box
     Then User entering numeric Monthly Rental Payment
-    And Clicks on Save button
+    And Clicks on Next button
 
   Scenario: User successfully filling out Expenses form with Own check box selected
     Given The user is on Expenses page
     When User selecting Own check box
     Then User entering numeric Monthly Mortgage Payment
-    And Clicks on Save button
+    And Clicks on Next button
 
   Scenario: User should write only positive number is field Monthly Rental Payment or get an error message
     Given The user is on Expenses page
@@ -50,11 +50,11 @@ Feature:Expenses feature
       Given The user is on Expenses page
       When User selecting Rent check box
       And User leaves field Monthly Rental Payment empty
-      Then Clicks on Save button
+      Then Clicks on Next button
       And User should see THIS FIELD IS REQUIRED message displayed under the empty field in Rent.
       When User selecting Own check box
       And User leaves field Monthly Mortgage Payment empty
-      Then Clicks on Save button
+      Then Clicks on Next button
       And User should see THIS FIELD IS REQUIRED message displayed under the empty field in Own.
 
   Scenario: User should be able to return on previous page by clicking Previous button

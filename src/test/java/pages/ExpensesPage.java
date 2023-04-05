@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
+import utils.SeleniumUtils;
 
 import java.util.Random;
 
@@ -25,8 +26,8 @@ public class ExpensesPage {
     private WebElement monthlyRentalPayment;
     @FindBy(id = "firtmortagagetotalpayment")
     private WebElement monthlyMortgagePayment;
-    @FindBy(xpath = "//a[@href='#finish']")
-    private WebElement saveButton;
+    @FindBy(xpath = "//a[@href='#next']")
+    private WebElement nextButton;
     @FindBy(id = "monthlyrentalpayment-error")
     private WebElement errorMessageRent;
     @FindBy(id = "firtmortagagetotalpayment-error")
@@ -35,8 +36,8 @@ public class ExpensesPage {
     private WebElement previousButton;
     @FindBy(xpath = "(//li[@role='tab'])[2]")
     private WebElement selectedPage;
-    @FindBy(xpath = "//h6[@class='pb-50']")
-    private WebElement textAfterSaveButton;
+    @FindBy(xpath = "//h6[@class='py-50']")
+    private WebElement textAfterNextButton;
 
 
     public WebElement getExpenses() {return expenses;}
@@ -47,12 +48,11 @@ public class ExpensesPage {
     public WebElement getPersonalInfo() {return personalInfo;}
     public WebElement getMonthlyRentalPayment() {return monthlyRentalPayment;}
     public WebElement getMonthlyMortgagePayment() {return monthlyMortgagePayment;}
-    public WebElement getTextAfterSaveButton() {return textAfterSaveButton;}
+    public WebElement getTextAfterNextButtonEmployment() {return textAfterNextButton;}
 
     public void rentCheckBoxClick(){rentCheckBox.click();}
     public void ownCheckBoxClick(){ownCheckBox.click();}
-    public WebElement getSelectedPage() {return selectedPage;}
-
+    public void scrollUp(){SeleniumUtils.scroll(-200, -200);}
     public void monthlyRentalPaymentCorrectInput(){
         Random random =  new Random();
         int rent = random.nextInt(2501) + 2500;
@@ -63,7 +63,7 @@ public class ExpensesPage {
         int own = random.nextInt(3501) + 2500;
         monthlyMortgagePayment.sendKeys(String.valueOf(own));
     }
-    public void saveClick(){saveButton.click();}
+    public void nextClick(){ nextButton.click();}
 
     public void monthlyRentalPaymentIncorrectInput(){
         monthlyRentalPayment.sendKeys(String.valueOf(-1));
