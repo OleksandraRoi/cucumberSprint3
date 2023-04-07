@@ -36,7 +36,9 @@ public class PreApprovalDetailsPage {
     private  WebElement downPayment;
     @FindBy(id = "downpaymentpercentage")
     private WebElement downPaymentPercentage;
-    @FindBy(id="src_down_payment")
+    @FindBy(className = "loanamount")
+    private WebElement loanamount;
+    @FindBy(xpath = "//select[@name='src_down_payment']")
     private WebElement selectorTypeOfAccount;
     @FindBy(id = "additionalfunds")
     private WebElement additionalFunds;
@@ -44,16 +46,8 @@ public class PreApprovalDetailsPage {
     public void goToMortgagePage(){
         linkToMortgageApplication.click();
     }
-
-    public void realtorYesClickBox() {
-    realtorClickBoxYes.click();
-    }
     public void sendInfo(String provideName) {
-    realtorInfo.sendKeys(provideName);
-    }
-
-    public void clickOnLoanYesBox() {
-    loanOfficerClickBoxYes.click();
+        realtorInfo.sendKeys(provideName);
     }
 
     public List<String> drop_down_menu() {
@@ -64,17 +58,66 @@ public class PreApprovalDetailsPage {
         }
         return castToString;
     }
-
-    public void realtorNoClickBox(){
-        realtorClickBoxNo.click();
-    }
-    public void clickOnLoanNoBox(){
-        loanOfficerClickBoxNo.click();
+    public List<String> drop_down_menu_2(){
+        List<WebElement> allOptions = new Select(selectorTypeOfAccount).getOptions();
+        List<String> castToString = new ArrayList<>();
+        for(WebElement one: allOptions){
+            castToString.add(String.valueOf(one.getText()));
+        }
+        return castToString;
     }
     public void enterESTIMATED_PURCHASE_PRICE(double price){
         estimatedPrice.sendKeys(String.valueOf(price));
     }
     public void enterDOWN_PAYMENT_AMOUNT(double price){
         downPayment.sendKeys(String.valueOf(price));
+    }
+
+    public WebElement getRealtorClickBoxYes() {
+        return realtorClickBoxYes;
+    }
+
+    public WebElement getRealtorClickBoxNo() {
+        return realtorClickBoxNo;
+    }
+
+    public WebElement getRealtorInfo() {
+        return realtorInfo;
+    }
+
+    public WebElement getLoanOfficerClickBoxYes() {
+        return loanOfficerClickBoxYes;
+    }
+
+    public WebElement getLoanOfficerClickBoxNo() {
+        return loanOfficerClickBoxNo;
+    }
+
+    public WebElement getSelectorPurchaseHome() {
+        return selectorPurchaseHome;
+    }
+
+    public WebElement getEstimatedPrice() {
+        return estimatedPrice;
+    }
+
+    public WebElement getDownPayment() {
+        return downPayment;
+    }
+
+    public WebElement getDownPaymentPercentage() {
+        return downPaymentPercentage;
+    }
+
+    public WebElement getLoanamount() {
+        return loanamount;
+    }
+
+    public WebElement getSelectorTypeOfAccount() {
+        return selectorTypeOfAccount;
+    }
+
+    public WebElement getAdditionalFunds() {
+        return additionalFunds;
     }
 }
