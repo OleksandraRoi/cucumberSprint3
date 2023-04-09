@@ -1,22 +1,23 @@
 package runners;
 
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+//public class DashboardCucumberRunner {
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            tags = "@preapp",
-            features = "src/test/resources", // the relative path of the folder where the feature files are located
-            glue = "stepDefinitions", // the relative path of the folder where step definition methods are located
+            tags = "@Scenario1",
+            features = "src/test/resources",
+            glue = "stepDefinitions",
             stepNotifications = true,
             plugin = {
-                    "pretty", // adds more detailed output log in the cmd console
-                    "html:target/basic-report/report.html"  // to generate a basic built-in report
+                    "pretty",
+                    "html:target/basic-report/report.html"
             }
     )
 
-    public class DashboardPageRunner_E {
+    public class DashboardCucumberRunner {
+
 }
 

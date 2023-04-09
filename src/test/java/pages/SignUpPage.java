@@ -52,5 +52,4 @@ public class SignUpPage {
         signUpButton.click();
     }
 
-
 }
