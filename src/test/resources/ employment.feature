@@ -1,8 +1,7 @@
 Feature: Employment feature
 
-  As a user applying for a mortgage loan, I want to provide my employment
-  and income details to the bank, so that they can evaluate my eligibility for
-  a loan
+  As a user applying for a mortgage loan, I want to provide my employment and
+  income details to the bank, so that they can evaluate my eligibility for a loan
 
   Background: Common steps for all scenarios
     Given The user is on the logging page
@@ -12,7 +11,13 @@ Feature: Employment feature
 @b
   Scenario: Borrower Employment Information
     Given The user is on Employment page
-    Then  User should see fields for EMPLOYER NAME, POSITION, CITY, a dropdown box for STATE, and a date picker for START DATE and END DATE
+    Then  User should see fields for
+     |EMPLOYER NAME |
+     |POSITION      |
+     |CITY          |
+     |STATE         |
+     |START DATE    |
+     |END DATE      |
     And EMPLOYER NAME should be a required input field
     And STATE should be as dropdown list with all 50 US states and their two letter abbreviations.
     And The checkbox labeled This is my current job should be unchecked by default.
@@ -27,16 +32,29 @@ Feature: Employment feature
 
 #  Scenario: Borrower Gross Monthly Employment Income section
 #    Given The user is on Employment page
-#    Then User should see fields for GROSS MONTHLY INCOME, MONTHLY OVERTIME, MONTHLY BONUSES, MONTHLY COMMISSIONS, MONTHLY DIVIDENDS/INTEREST, and Borrower Total Monthly Income
+#    Then User should see fields for
+#     |GROSS MONTHLY INCOME|
+#     |MONTHLY OVERTIME    |
+#     |MONTHLY BONUSES     |
+#     |MONTHLY COMMISSIONS |
+#     |MONTHLY DIVIDENDS/INTEREST|
+#     |Borrower Total Monthly Income|
 #    And All fields in this section should only accept numeric input (digits and decimal points) with a maximum of two decimal places. The maximum character limit for the fields should be 12 characters.
 #    And GROSS MONTHLY INCOME should be a required input field.
 #    And The Borrower Total Monthly Income field should be automatically calculated based on the other fields.
-#
+
 #  Scenario: Additional Gross Monthly Income section
 #    Given The user is on Employment page
 #    Then The user should see three sets of INCOME SOURCE dropdowns and Amount fields
-#    And INCOME SOURCE dropdown should have Alimony/Child Support, Social Security/Disability Income, Unemployment Benefits, Interest and Dividends, VA Compensation, Royalty Payments and Other Types of Income options
-#
+#    And INCOME SOURCE dropdown should have
+#     |Alimony/Child Support|
+#     |Social Security/Disability Income|
+#     |Unemployment Benefits            |
+#     |Interest and Dividends           |
+#     |VA Compensation                  |
+#     |Royalty Payments                 |
+#     |Other Types of Income            |
+
 #  Scenario: The user should be able to navigate to other sections using the "Previous" and "Next" buttons
 #    Given The user is on Employment page
 #    Then The Previous button should take the user to the previous section.
