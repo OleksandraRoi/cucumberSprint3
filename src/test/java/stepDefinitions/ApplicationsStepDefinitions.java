@@ -13,12 +13,6 @@ public class ApplicationsStepDefinitions {
 
     // Background
 
-    @Given("The user is on the login page")
-    public void the_user_is_on_the_login_page() {
-
-
-    }
-
     @Then("User navigates to the Application List page")
     public void user_navigates_to_the_application_list_page(){
         Driver.getDriver().get("http://qa-duobank.us-east-2.elasticbeanstalk.com/applications.php");
@@ -27,7 +21,7 @@ public class ApplicationsStepDefinitions {
     }
 
 
-    // Scenario 1
+    // Common Given
 
     @Given("The user is on the Application List page")
     public void the_user_is_on_the_application_list_page() {
@@ -36,6 +30,8 @@ public class ApplicationsStepDefinitions {
 
     }
 
+
+    // Scenario 1
     @Then("The user should see a table with columns for")
     public void the_user_should_see_a_table_with_columns_for(io.cucumber.datatable.DataTable dataTable) {
 
