@@ -43,7 +43,28 @@ public class PathPage {
     private WebElement homeNumber;
     @FindBy(id = "b_dob")
     private WebElement dateOfBirth;
-
+    @FindBy(id = "employername1")
+    private WebElement empName;
+    @FindBy(id = "position1")
+    private WebElement position;
+    @FindBy(id = "city")
+    private WebElement city;
+    @FindBy(id = "state1")
+    private WebElement state;
+    @FindBy(id = "start_date1")
+    private WebElement startDate;
+    @FindBy(name = "gross_monthly_income")
+    private WebElement monthlyIncome;
+    @FindBy(id = "eConsentdeclarerFirstName")
+    private WebElement firstNameOnConsent;
+    @FindBy(id = "eConsentdeclarerLastName")
+    private WebElement lastNameOnConsent;
+    @FindBy(id = "eConsentdeclarerEmail")
+    private WebElement emailConsent;
+    @FindBy(xpath = "(//label[@class='custom-control-label'])[1]")
+    private WebElement agreeCheckBox;
+    @FindBy(xpath = "//a[@href='#finish']")
+    private WebElement submitButton;
 
     public void page1() {
         Faker faker = new Faker();
@@ -77,4 +98,37 @@ public class PathPage {
         new ExpensesPage().monthlyRentalPaymentCorrectInput();
         new ExpensesPage().nextClick();
     }
+
+  public void pathToCreditReport(){
+      Faker faker = new Faker();
+      pathToEmployment();
+      empName.sendKeys(faker.name().fullName());
+      position.sendKeys(faker.company().profession());
+      city.sendKeys(faker.address().city());
+      state.click();
+      state.sendKeys("I", Keys.ENTER);
+      startDate.sendKeys(faker.backToTheFuture().date());
+      int salary = faker.number().numberBetween(4000, 15000);
+      monthlyIncome.sendKeys(String.valueOf(salary));
+      nextButton.click();
+  }
+  public void pathToEConsent(){
+        pathToCreditReport();
+      new ExpensesPage().scrollUp();
+      nextButton.click();
+  }
+
+  public void pathToSummeryPage(){
+      Faker faker = new Faker();
+      pathToEConsent();
+      firstNameOnConsent.sendKeys(faker.name().firstName());
+      lastNameOnConsent.sendKeys(faker.name().lastName());
+      emailConsent.sendKeys(faker.internet().emailAddress());
+      agreeCheckBox.click();
+      nextButton.click();
+  }
+  public void finishOfApplication(){
+        pathToSummeryPage();
+      submitButton.click();
+  }
 }
