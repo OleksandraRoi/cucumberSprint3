@@ -1,11 +1,16 @@
 package stepDefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
+import pages.EmploymentPage;
 import pages.ExpensesPage;
 import pages.PathPage;
 import utils.Driver;
+import utils.SeleniumUtils;
+
+import java.util.List;
 
 public class EmploymentSteps {
 
@@ -17,17 +22,20 @@ public class EmploymentSteps {
     public void the_user_is_on_employment_page() {
         Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getTextAfterNextButtonEmployment().getText()));
     }
-    @Then("User should see fields for EMPLOYER NAME, POSITION, CITY, a dropdown box for STATE, and a date picker for START DATE and END DATE")
-    public void user_should_see_fields_for_employer_name_position_city_a_dropdown_box_for_state_and_a_date_picker_for_start_date_and_end_date() {
-
+    @Then("User should see fields for")
+    public void user_should_see_fields_for(List<String> dataTable) {
+        new EmploymentPage().checkBoxClick();
+        Assert.assertEquals(new EmploymentPage().pageInfo(), dataTable);
     }
     @Then("EMPLOYER NAME should be a required input field")
     public void employer_name_should_be_a_required_input_field() {
-
+      new EmploymentPage().nextButtonClick();
+        //SeleniumUtils.waitForVisibility(new EmploymentPage().getErrorNameMessage(), 3);
+      Assert.assertEquals(new EmploymentPage().getErrorNameMessage().getText(), "THIS FIELD IS REQUIRED.");
     }
     @Then("STATE should be as dropdown list with all {int} US states and their two letter abbreviations.")
     public void state_should_be_as_dropdown_list_with_all_us_states_and_their_two_letter_abbreviations(Integer int1) {
-
+    Assert.assertEquals(new EmploymentPage().expectedStates(), new EmploymentPage().actualStates());
     }
     @Then("The checkbox labeled This is my current job should be unchecked by default.")
     public void the_checkbox_labeled_this_is_my_current_job_should_be_unchecked_by_default() {
