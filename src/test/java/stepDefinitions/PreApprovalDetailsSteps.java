@@ -3,9 +3,11 @@ package stepDefinitions;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.PreApprovalDetailsPage;
+import utils.Driver;
 import utils.SeleniumUtils;
 
 import java.util.Arrays;
@@ -74,7 +76,12 @@ public class PreApprovalDetailsSteps {
 
     @Then("The Source of Down Payment field should have a drop-down menu with options such as {string}, {string}, and {string}.")
     public void theSourceOfDownPaymentFieldShouldHaveADropDownMenuWithOptionsSuchAsAnd(String arg0, String arg1, String arg2) {
-        System.out.println();
     Assert.assertEquals(new PreApprovalDetailsPage().drop_down_menu_2(),List.of(arg0,arg1,arg2));
+    }
+
+    @When("I filled all information I should be able to click next")
+    public void iFilledAllInformationIShouldBeAbleToClickNext() {
+        new PreApprovalDetailsPage().getNext().click();
+        Assert.assertEquals(Driver.getDriver().findElement(By.xpath("(//h6[@class=\"py-50\"])[1]")).getText(),"Personal Information");
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.common.util.concurrent.ServiceManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
@@ -42,6 +43,8 @@ public class PreApprovalDetailsPage {
     private WebElement selectorTypeOfAccount;
     @FindBy(id = "additionalfunds")
     private WebElement additionalFunds;
+    @FindBy(linkText = "Next")
+    private WebElement next;
 
     public void goToMortgagePage(){
         linkToMortgageApplication.click();
@@ -112,12 +115,7 @@ public class PreApprovalDetailsPage {
     public WebElement getLoanamount() {
         return loanamount;
     }
-
-    public WebElement getSelectorTypeOfAccount() {
-        return selectorTypeOfAccount;
-    }
-
-    public WebElement getAdditionalFunds() {
-        return additionalFunds;
+    public WebElement getNext() {
+        return next;
     }
 }

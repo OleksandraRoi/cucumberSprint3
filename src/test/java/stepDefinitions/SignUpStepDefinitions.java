@@ -136,6 +136,4 @@ public class SignUpStepDefinitions {
         Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/index.php", driver.getCurrentUrl());
 
     }
-
-
 }

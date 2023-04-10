@@ -16,6 +16,7 @@ Feature: PreApproval Details
     Then Down Payment percentage should automatically be calculated as the user enters the down payment amount
     When I filled all information Your Loan Amount field should automatically update based on the purchase price minus the down payment amount
     Then The Source of Down Payment field should have a drop-down menu with options such as "Checking/Savings (most recent bank statement)", "Equity on Pending Sale (executed sales contract)", and "Other type of Down Payment".
+    When I filled all information I should be able to click next
 
   Scenario: invalid characters
     When I got to the page ,I should be able to choose no option in ARE YOU WORKING WITH A REALTOR?
@@ -26,3 +27,4 @@ Feature: PreApproval Details
     Then Down Payment percentage should automatically be calculated as the user enters the down payment amount
     When I filled all information Your Loan Amount field should automatically update based on the purchase price minus the down payment amount
     Then The Source of Down Payment field should have a drop-down menu with options such as "Checking/Savings (most recent bank statement)", "Equity on Pending Sale (executed sales contract)", and "Other type of Down Payment".
+    When I filled all information I should be able to click next
