@@ -11,6 +11,10 @@ public class SummarySteps {
     public void userGoingToSummaryPage() {
         new PathPage().pathToSummeryPage();
     }
+    @When("I got to summary page i should be able to click on PersonalnDetails")
+    public void iGotToSummaryPageIShouldBeAbleToClickOnPersonalnDetails() {
+        page.clickOnPreApprovalEdit();
+    }
 
     @When("I got to summary page i should be able to click on PersonalnformationEdit page")
     public void iGotToSummaryPageIShouldBeAbleToClickOnPersonalnformationEditPage() {
@@ -37,8 +41,18 @@ public class SummarySteps {
         page.clickOneConsentEdit();
     }
 
-    @When("I got to summary page i should be able to click on PersonalnDetails")
-    public void iGotToSummaryPageIShouldBeAbleToClickOnPersonalnDetails() {
-        page.clickOnPreApprovalEdit();
+    @Then("I should be able to go to the Summary page")
+    public void iShouldBeAbleToGoToTheSummaryPage() {
+        page.goToSummarypage();
+    }
+
+    @When("I filled only one page click on submit")
+    public void iFilledOnlyOnePageClickOnSubmit() {
+        page.clickOnSubmit();
+    }
+
+    @Then("I have to fill first page")
+    public void iHaveToFillFirstPage() {
+        new PathPage().page1();
     }
 }
