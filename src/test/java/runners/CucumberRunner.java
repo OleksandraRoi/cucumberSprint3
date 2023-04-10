@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@c",
+        tags = "@b",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
