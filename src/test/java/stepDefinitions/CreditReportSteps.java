@@ -17,8 +17,8 @@ public class CreditReportSteps {
     }
     @Given("The User is on Credit Report page")
     public void the_user_is_on_credit_report_page() {
-        SeleniumUtils.scrollToElement(new CreditReportPage().getCreditReportPage());
-        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new CreditReportPage().getCreditReportPage().getText()));
+        SeleniumUtils.scrollToElement(new CreditReportPage().getCreditReportText());
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains(new CreditReportPage().getCreditReportText().getText()));
 
     }
     @Then("The User should be able to see Yes and No select option in the Credit Report download checkbox")
