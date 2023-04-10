@@ -94,7 +94,7 @@ public class EconsentStepDefinitions extends PathPage {
         econsentPage.clickAgreeButtonAndNext();
 
        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://qa-duobank.us-east-2.elasticbeanstalk.com/mortgage.php");
-        SeleniumUtils.waitFor(5);
+
     }
 
     }
