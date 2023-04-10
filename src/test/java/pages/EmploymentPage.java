@@ -293,7 +293,9 @@ public class EmploymentPage {
     }
     public void previousButtonClick(){previousButton.click();}
     public void cleanNameAndIncome(){
+        SeleniumUtils.scroll(-500, -500);
         clearClick();
+        popUpClickYes();
         monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);}
     public void fillInNameAndIncome(){
         Faker faker = new Faker();

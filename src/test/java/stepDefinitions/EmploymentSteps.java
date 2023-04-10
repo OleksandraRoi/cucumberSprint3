@@ -170,12 +170,12 @@ public class EmploymentSteps {
     }
     @Then("If a required field is not filled in, the Next button should not navigate to the next section and display an error message indicating which field needs to be filled in.")
     public void if_a_required_field_is_not_filled_in_the_next_button_should_not_navigate_to_the_next_section_and_display_an_error_message_indicating_which_field_needs_to_be_filled_in() {
-        SeleniumUtils.scrollToElement(new EmploymentPage().getPreviousButton());
+        SeleniumUtils.scroll(-300, -300);
         new EmploymentPage().previousButtonClick();
         new EmploymentPage().cleanNameAndIncome();
         new EmploymentPage().nextButtonClick();
         Assert.assertEquals(new EmploymentPage().getErrorNameMessage().getText(), "THIS FIELD IS REQUIRED.");
-        Assert.assertEquals(new EmploymentPage().getIncomeError(), "THIS FIELD IS REQUIRED.");
+        Assert.assertEquals(new EmploymentPage().getIncomeError().getText(), "THIS FIELD IS REQUIRED.");
     }
 
 }
