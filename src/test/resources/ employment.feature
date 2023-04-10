@@ -8,7 +8,7 @@ Feature: Employment feature
     When User entering email and password
     Then User is locating employment page
 
-
+@b
   Scenario: Borrower Employment Information
     Given The user is on Employment page
     Then  User should see fields for
@@ -57,7 +57,7 @@ Feature: Employment feature
      |Royalty Payments                 |
      |Other Types of Income            |
 
-  @b
+
   Scenario: The user should be able to navigate to other sections using the "Previous" and "Next" buttons
     Given The user is on Employment page
     Then The Previous button should take the user to the previous section.
