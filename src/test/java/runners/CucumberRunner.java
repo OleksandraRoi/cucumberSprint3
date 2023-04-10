@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@b",
+        tags = "@regression",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,

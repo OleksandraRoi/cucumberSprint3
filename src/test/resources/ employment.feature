@@ -1,3 +1,4 @@
+@regression
 Feature: Employment feature
 
   As a user applying for a mortgage loan, I want to provide my employment and
@@ -57,7 +58,7 @@ Feature: Employment feature
      |Royalty Payments                 |
      |Other Types of Income            |
 
-  @b
+
   Scenario: The user should be able to navigate to other sections using the "Previous" and "Next" buttons
     Given The user is on Employment page
     Then The Previous button should take the user to the previous section.

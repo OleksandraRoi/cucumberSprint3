@@ -1,4 +1,4 @@
-@regression
+@smoke
 Feature: Sign up for a mortgage application account
 
   As a potential user and customer, I should be able to use the Sign Up page and create an account to use the DuoBank Mortgage Application services.
