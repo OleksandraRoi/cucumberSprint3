@@ -29,7 +29,7 @@ Feature: Employment feature
     And The next section should have a Clear option that displays a warning popup about clearing the information.
     And The Clear option should only clear the information in that section, not any other sections.
     And The user should be able to remove a section using the Remove option.
-  @b
+
   Scenario: Borrower Gross Monthly Employment Income section
     Given The user is on Employment page
     Then User should see fields for income
@@ -43,11 +43,13 @@ Feature: Employment feature
     And GROSS MONTHLY INCOME should be a required input field.
     And The Borrower Total Monthly Income field should be automatically calculated based on the other fields.
 
+
   Scenario: Additional Gross Monthly Income section
     Given The user is on Employment page
     Then The user should see three sets of INCOME SOURCE dropdowns and Amount fields
     And INCOME SOURCE dropdown should have
-     |Alimony/Child Support|
+     |Select One                       |
+     |Alimony/Child Support            |
      |Social Security/Disability Income|
      |Unemployment Benefits            |
      |Interest and Dividends           |
@@ -55,6 +57,7 @@ Feature: Employment feature
      |Royalty Payments                 |
      |Other Types of Income            |
 
+  @b
   Scenario: The user should be able to navigate to other sections using the "Previous" and "Next" buttons
     Given The user is on Employment page
     Then The Previous button should take the user to the previous section.
