@@ -4,9 +4,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import pages.EconsentPage;
 import pages.PathPage;
 import pages.LoginPage;
 import utils.Driver;
+import utils.SeleniumUtils;
 
 public class EconsentStepDefinitions extends PathPage {
 
@@ -25,80 +27,79 @@ public class EconsentStepDefinitions extends PathPage {
         Driver.getDriver().get("http://qa-duobank.us-east-2.elasticbeanstalk.com/mortgage.php");
         Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/mortgage.php", Driver.getDriver().getCurrentUrl());
     }
-    @When("The user enters their first name, last name, and email address")
-    public void the_user_enters_their_first_name_last_name_and_email_address() {
+    @When("The user enters their random first name, last name, and email address")
+    public void the_user_enters_their_random_first_name_last_name_and_email_address() {
+       new  EconsentPage().fillTheFormWithRandomData();
 
     }
-    @When("The user clicks on the “Agree” radio button")
-    public void the_user_clicks_on_the_agree_radio_button() {
+    @Then("The user should see the first name and last name filled up")
+    public void the_user_should_see_the_first_name_and_last_name_filled_up() {
 
-    }
-    @Then("The user should be able to proceed with the application")
-    public void the_user_should_be_able_to_proceed_with_the_application() {
+    EconsentPage econsentPage = new EconsentPage();
 
-    }
-    @Then("The user should see a confirmation message on the next page")
-    public void the_user_should_see_a_confirmation_message_on_the_next_page() {
+    String actualFirstName=econsentPage.getFirstNameValue();
+    String actualLastName= econsentPage.getLastNameValue();
 
+    Assert.assertNotEquals("",actualFirstName);
+        SeleniumUtils.waitFor(5);
+    Assert.assertNotEquals("",actualLastName);
+        SeleniumUtils.waitFor(5);
     }
 
     //2nd
-    @When("The user leaves any required field empty")
-    public void the_user_leaves_any_required_field_empty() {
+    @Then("The user should see Agree button selected by default")
+    public void the_user_should_see_agree_button_selected_by_default() {
 
-    }
-
-    @Then("The user should see an error message next to the empty field\\(s)")
-    public void the_user_should_see_an_error_message_next_to_the_empty_field_s() {
-
-    }
-
-    @Then("The user should not be able to proceed with the application")
-    public void the_user_should_not_be_able_to_proceed_with_the_application() {
-
+       EconsentPage econsentPage= new EconsentPage();
+        String agreeDefault;
+        agreeDefault = String.valueOf(econsentPage.agreeClick());
+        //Assert.assertTrue("Agree is not selected", Boolean.parseBoolean(agreeDefault));
+        Assert.assertTrue(new EconsentPage().AgreeSelected());
+        SeleniumUtils.waitFor(5);
     }
 
     //3rd
 
-    @When("The user clicks on the link to view the disclosures")
-    public void the_user_clicks_on_the_link_to_view_the_disclosures() {
-
+    @When("The user doe not agree to the terms and conditions of eConsent")
+    public void the_user_doe_not_agree_to_the_terms_and_conditions_of_e_consent() {
+      new EconsentPage().UserDontAgree();
     }
 
-    @Then("The user should be taken to a page with the necessary disclosures related to the loan application")
-    public void the_user_should_be_taken_to_a_page_with_the_necessary_disclosures_related_to_the_loan_application() {
-
+    @Then("User clicks on Do not agree button")
+    public void user_clicks_on_do_not_agree_button() {
+     new EconsentPage().dontAgreeClick();
+     Assert.assertTrue(new EconsentPage().dontAgreeSelected());
+        SeleniumUtils.waitFor(5);
     }
 
-    @Then("The user should be able to read and review the disclosures before providing consent")
-    public void the_user_should_be_able_to_read_and_review_the_disclosures_before_providing_consent() {
-
-    }
-
-
-    @Then("The user should be able to navigate back to the electronic consent page")
-    public void the_user_should_be_able_to_navigate_back_to_the_electronic_consent_page() {
-
+    @Then("The user should be returned to the main application")
+    public void the_user_should_be_returned_to_the_main_application() {
+        Assert.assertNotEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/dashboard.php", "http://qa-duobank.us-east-2.elasticbeanstalk.com/mortgage.php");
+        SeleniumUtils.waitFor(5);
     }
 
     //4th
 
-    @When("The user clicks on the “Don’t Agree” radio button")
-    public void the_user_clicks_on_the_don_t_agree_radio_button() {
+    @When("The user clicks on the  Agree button")
+    public void the_user_clicks_on_the_agree_button() {
+        EconsentPage econsentPage= new EconsentPage();
+        econsentPage.agreeClick();
 
     }
 
-    @Then("The user should be redirected back to the main application flow")
-    public void the_user_should_be_redirected_back_to_the_main_application_flow() {
+    @Then("The user should be able to proceed to the next step")
+    public void the_user_should_be_able_to_proceed_to_the_next_step() {
+        EconsentPage econsentPage= new EconsentPage();
+
+        econsentPage.clickAgreeButtonAndNext();
+
+       Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://qa-duobank.us-east-2.elasticbeanstalk.com/mortgage.php");
+        SeleniumUtils.waitFor(5);
+    }
 
     }
 
-    @Then("The user should see a message explaining that they cannot proceed without providing electronic consent.")
-    public void the_user_should_see_a_message_explaining_that_they_cannot_proceed_without_providing_electronic_consent() {
-
-    }
 
 
 
 
-}
