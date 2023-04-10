@@ -124,6 +124,7 @@ public class EmploymentPage {
     public WebElement getCalculatedNum() {return calculatedNum;}
     public WebElement getNextPageText() {return nextPageText;}
     public WebElement getEmployer2Text() {return employer2Text;}
+    public WebElement getPreviousButton() {return previousButton;}
 
     public String fieldName(){
         String value = getEmpName().getAttribute("value");
@@ -208,24 +209,24 @@ public class EmploymentPage {
         //income.sendKeys(String.valueOf(salary));
     }
     public void incomeDot(){
-        monthlyIncome.sendKeys("1", Keys.BACK_SPACE);
         monthlyIncome.sendKeys(".");
+        monthlyInterest.click();
     }
     public void overtimeDot(){
-        monthlyOvertime.sendKeys("1", Keys.BACK_SPACE);
         monthlyOvertime.sendKeys(".");
+        monthlyInterest.click();
     }
     public void bonusDot(){
-        monthlyBonus.sendKeys("1", Keys.BACK_SPACE);
         monthlyBonus.sendKeys(".");
+        monthlyInterest.click();
     }
     public void commissionDot(){
-        monthlyCommission.sendKeys("1", Keys.BACK_SPACE);
         monthlyCommission.sendKeys(".");
+        monthlyInterest.click();
     }
     public void interestDot(){
-        monthlyInterest.sendKeys("1", Keys.BACK_SPACE);
         monthlyInterest.sendKeys(".");
+        monthlyCommission.click();
     }
 
     public void incomeDecimal(){
@@ -245,7 +246,8 @@ public class EmploymentPage {
     }
 
     public void incomeLargeNum(){
-        monthlyIncome.sendKeys("111");
+        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyIncome.sendKeys("1111111111111");
 
     }
     public void overtimeLargeNum(){
@@ -262,7 +264,7 @@ public class EmploymentPage {
     }
     public void interestLargeNum(){
         monthlyInterest.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
-        monthlyInterest.sendKeys("111111111111");
+        monthlyInterest.sendKeys("1111111111111");
     }
     public void clearIncome(){
         monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
@@ -289,8 +291,14 @@ public class EmploymentPage {
                 Keys.BACK_SPACE, Keys.BACK_SPACE);
         monthlyInterest.sendKeys("1000");
     }
-    public void previousButtonClick(){previousButton.sendKeys();}
-    public void cleanIncome(){
-        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+    public void previousButtonClick(){previousButton.click();}
+    public void cleanNameAndIncome(){
+        clearClick();
+        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);}
+    public void fillInNameAndIncome(){
+        Faker faker = new Faker();
+        empName.sendKeys(faker.name().fullName());
+        monthlyIncome.sendKeys("5000");
     }
+
 }
