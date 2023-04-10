@@ -95,7 +95,7 @@ public class EmploymentSteps {
 
     @Then("User should see fields for income")
     public void user_should_see_fields_for_income(List<String> dataTable) {
-        SeleniumUtils.scroll(200,200);
+        SeleniumUtils.scroll(350,350);
     Assert.assertEquals(new EmploymentPage().incomeInfo(), dataTable);
     }
 
@@ -138,16 +138,17 @@ public class EmploymentSteps {
     @Then("GROSS MONTHLY INCOME should be a required input field.")
     public void gross_monthly_income_should_be_a_required_input_field() {
         new EmploymentPage().clearIncome();
-        Assert.assertEquals(new EmploymentPage().getIncomeError(), "THIS FIELD IS REQUIRED.");
+        Assert.assertEquals(new EmploymentPage().getIncomeError().getText(), "THIS FIELD IS REQUIRED.");
     }
     @Then("The Borrower Total Monthly Income field should be automatically calculated based on the other fields.")
     public void the_borrower_total_monthly_income_field_should_be_automatically_calculated_based_on_the_other_fields() {
-    Assert.assertEquals(new EmploymentPage().getCalculatedNum(), "500 $");
+    new EmploymentPage().calculator();
+    Assert.assertEquals(new EmploymentPage().getCalculatedNum().getText(), "5000 $");
     }
 
     @Then("The user should see three sets of INCOME SOURCE dropdowns and Amount fields")
     public void the_user_should_see_three_sets_of_income_source_dropdowns_and_amount_fields() {
-
+    SeleniumUtils.scroll(600, 600);
     }
 
     @Then("INCOME SOURCE dropdown should have")
@@ -156,21 +157,25 @@ public class EmploymentSteps {
     }
     @Then("The Previous button should take the user to the previous section.")
     public void the_previous_button_should_take_the_user_to_the_previous_section() {
+        SeleniumUtils.scrollToElement(new EmploymentPage().getPreviousButton());
     new EmploymentPage().previousButtonClick();
     Assert.assertTrue(Driver.getDriver().getPageSource().contains(new ExpensesPage().getExpenses().getText()));
     }
     @Then("The Next button should take the user to the next section only if all required fields are filled in.")
     public void the_next_button_should_take_the_user_to_the_next_section_only_if_all_required_fields_are_filled_in() {
     new EmploymentPage().nextButtonClick();
+    new EmploymentPage().fillInNameAndIncome();
+    new EmploymentPage().nextButtonClick();
         Assert.assertTrue(Driver.getDriver().getPageSource().contains(new EmploymentPage().getNextPageText().getText()));
     }
     @Then("If a required field is not filled in, the Next button should not navigate to the next section and display an error message indicating which field needs to be filled in.")
     public void if_a_required_field_is_not_filled_in_the_next_button_should_not_navigate_to_the_next_section_and_display_an_error_message_indicating_which_field_needs_to_be_filled_in() {
-        new EmploymentPage().cleanIncome();
+        SeleniumUtils.scrollToElement(new EmploymentPage().getPreviousButton());
+        new EmploymentPage().previousButtonClick();
+        new EmploymentPage().cleanNameAndIncome();
         new EmploymentPage().nextButtonClick();
         Assert.assertEquals(new EmploymentPage().getErrorNameMessage().getText(), "THIS FIELD IS REQUIRED.");
         Assert.assertEquals(new EmploymentPage().getIncomeError(), "THIS FIELD IS REQUIRED.");
-
     }
 
 }
