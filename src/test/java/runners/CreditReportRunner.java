@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@maxNew",
+        tags = "@nzr1",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
@@ -16,6 +16,5 @@ import org.junit.runner.RunWith;
                 "html:target/basic-report/report.html"
         }
 )
-
-public class CucumberRunnerMax {
+public class CreditReportRunner {
 }

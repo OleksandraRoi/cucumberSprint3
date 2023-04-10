@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 @regression
+=======
+>>>>>>> origin/main
 Feature: Sign up for a mortgage application account
 
   As a potential user and customer, I should be able to use the Sign Up page and create an account to use the DuoBank Mortgage Application services.
@@ -12,6 +15,7 @@ Feature: Sign up for a mortgage application account
     Then the new account is created and the user is redirected to the Sign In page
     Then the message "Welcome Back!" is displayed
 
+<<<<<<< HEAD
   @Scenario2
   Scenario: User enters invalid input
     Given the user is on the registration page of the mortgage application website
@@ -30,3 +34,23 @@ Feature: Sign up for a mortgage application account
     And the user already has an account
     When the user clicks the "Already have an account? Sign in" link
     Then the user is redirected to the Sign In page.
+=======
+#  Scenario: User enters invalid input
+#    Given the user is on the registration page of the mortgage application website
+#    When the user enters invalid input into any of the input fields
+#    Then the Sign Up button should remain disabled
+#    And error messages should be displayed for the invalid input fields
+#
+#  Scenario: User enters existing email address
+#    Given the user is on the registration page of the mortgage application website
+#    And there is an existing account with the email address the user is trying to use
+#    When the user enters the existing email address
+#    Then the Sign Up button should remain disabled
+#    And an error message "This email already used" should be displayed
+#
+#  Scenario: User already has an account
+#    Given the user is on the registration page of the mortgage application website
+#    And the user already has an account
+#    When the user clicks the "Already have an account? Sign in" link
+#    Then the user is redirected to the Sign In page.
+>>>>>>> origin/main
