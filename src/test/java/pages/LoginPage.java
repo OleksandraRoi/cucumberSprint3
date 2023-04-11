@@ -26,8 +26,8 @@ public class LoginPage {
 
 
     public void login(){
-    email.sendKeys("teamd6@gmail.com");
-    password.sendKeys("teamd");
+    email.sendKeys("sprint5@gmail.com");
+    password.sendKeys("sprint5");
     loginButton.click();
     }
 
