@@ -13,7 +13,6 @@ public class ExpensesPage {
 
     public ExpensesPage(){PageFactory.initElements(Driver.getDriver(), this);}
 
-
     @FindBy(xpath = "(//h6[@class='py-50'])[4]")
     private WebElement expenses;
     @FindBy(xpath = "(//h6[@class='py-50'])[2]")

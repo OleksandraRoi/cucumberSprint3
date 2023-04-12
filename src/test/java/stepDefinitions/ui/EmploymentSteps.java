@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.ui;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -88,7 +88,7 @@ public class EmploymentSteps {
     Assert.assertTrue(new EmploymentPage().getRemove().isDisplayed());
     String text = new EmploymentPage().getEmployer2Text().getText();
     new EmploymentPage().removeClick();
-    new EmploymentPage().removeYesClcik();
+    new EmploymentPage().removeYesClick();
     SeleniumUtils.waitFor(3);
     Assert.assertFalse(Driver.getDriver().getPageSource().contains(text));
     }

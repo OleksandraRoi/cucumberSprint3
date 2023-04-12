@@ -193,7 +193,7 @@ public class EmploymentPage {
     public void popUpClickYes(){popUpYes.click();}
     public void addEmployerButtonClick(){ addEmployerButton.click();}
     public void removeClick(){remove.click();}
-    public void removeYesClcik(){ removerPopUpYes.click();}
+    public void removeYesClick(){ removerPopUpYes.click();}
     public void scrollToClear(){SeleniumUtils.scroll(-50, -50);}
 
     public void fillOutEmploymentInfo(){
@@ -246,49 +246,39 @@ public class EmploymentPage {
     }
 
     public void incomeLargeNum(){
-        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyIncome.clear();
         monthlyIncome.sendKeys("1111111111111");
 
     }
     public void overtimeLargeNum(){
-        monthlyOvertime.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyOvertime.clear();
         monthlyOvertime.sendKeys("1111111111111");
     }
     public void bonusLargeNum(){
-        monthlyBonus.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyBonus.clear();
         monthlyBonus.sendKeys("1111111111111");
     }
     public void commissionLargeNum(){
-        monthlyCommission.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyCommission.clear();
         monthlyCommission.sendKeys("1111111111111");
     }
     public void interestLargeNum(){
-        monthlyInterest.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyInterest.clear();
         monthlyInterest.sendKeys("1111111111111");
     }
     public void clearIncome(){
-        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyIncome.clear();
     }
 
     public void calculator(){
         monthlyIncome.sendKeys("1000");
-        monthlyOvertime.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyOvertime.clear();
         monthlyOvertime.sendKeys("1000");
-        monthlyBonus.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyBonus.clear();
         monthlyBonus.sendKeys("1000");
-        monthlyCommission.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyCommission.clear();
         monthlyCommission.sendKeys("1000");
-        monthlyInterest.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE,
-                Keys.BACK_SPACE, Keys.BACK_SPACE);
+        monthlyInterest.clear();
         monthlyInterest.sendKeys("1000");
     }
     public void previousButtonClick(){previousButton.click();}
@@ -296,7 +286,7 @@ public class EmploymentPage {
         SeleniumUtils.scroll(-500, -500);
         clearClick();
         popUpClickYes();
-        monthlyIncome.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);}
+        monthlyIncome.clear();}
     public void fillInNameAndIncome(){
         Faker faker = new Faker();
         empName.sendKeys(faker.name().fullName());
