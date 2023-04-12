@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.ui;
 
 import io.cucumber.java.en.Then;
 import pages.PathPage;
