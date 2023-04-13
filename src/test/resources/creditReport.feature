@@ -12,13 +12,6 @@ Feature: Credit Report
       Then The User should be able to see Yes and No select option in the Credit Report download checkbox
 
   @nzr2
-      Scenario: The user should be able to select between two checkboxes labeled "Yes" and "No" to indicate
-      whether they want to order a credit report or not.
-        Given The User is on Credit Report page
-        Then The User should be able to select Credit Report download by choosing Yes checkbox option
-        Then The User should be able to reject Credit Report download by choosing No checkbox option
-
-  @nzr3
         Scenario: If the user selects "Yes", they should be taken to a secure third-party website where they can
         order their credit report once they submit the application. The link to the third-party website should open
         in a new tab or window.
@@ -26,7 +19,7 @@ Feature: Credit Report
           When The User selects Yes in checkbox
           Then The User is transferred to a new window with secure third-party website where they can order their Credit Report
 
-  @nzr4
+  @nzr3
           Scenario: If the user selects "No", they should not be taken to the third-party website and
           no credit report should be ordered.
             Given The User is on Credit Report page
