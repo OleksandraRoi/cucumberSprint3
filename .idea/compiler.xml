@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Sprint3" />
         <module name="cucumber" />
+        <module name="sprint3" />
       </profile>
     </annotationProcessing>
   </component>

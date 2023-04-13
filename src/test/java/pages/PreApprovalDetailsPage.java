@@ -3,6 +3,7 @@ package pages;
 import com.google.common.util.concurrent.ServiceManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.Data;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +14,7 @@ import java.nio.channels.Selector;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class PreApprovalDetailsPage {
     public PreApprovalDetailsPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -45,7 +47,6 @@ public class PreApprovalDetailsPage {
     private WebElement additionalFunds;
     @FindBy(linkText = "Next")
     private WebElement next;
-
     public void goToMortgagePage(){
         linkToMortgageApplication.click();
     }
@@ -74,48 +75,5 @@ public class PreApprovalDetailsPage {
     }
     public void enterDOWN_PAYMENT_AMOUNT(double price){
         downPayment.sendKeys(String.valueOf(price));
-    }
-
-    public WebElement getRealtorClickBoxYes() {
-        return realtorClickBoxYes;
-    }
-
-    public WebElement getRealtorClickBoxNo() {
-        return realtorClickBoxNo;
-    }
-
-    public WebElement getRealtorInfo() {
-        return realtorInfo;
-    }
-
-    public WebElement getLoanOfficerClickBoxYes() {
-        return loanOfficerClickBoxYes;
-    }
-
-    public WebElement getLoanOfficerClickBoxNo() {
-        return loanOfficerClickBoxNo;
-    }
-
-    public WebElement getSelectorPurchaseHome() {
-        return selectorPurchaseHome;
-    }
-
-    public WebElement getEstimatedPrice() {
-        return estimatedPrice;
-    }
-
-    public WebElement getDownPayment() {
-        return downPayment;
-    }
-
-    public WebElement getDownPaymentPercentage() {
-        return downPaymentPercentage;
-    }
-
-    public WebElement getLoanamount() {
-        return loanamount;
-    }
-    public WebElement getNext() {
-        return next;
     }
 }
