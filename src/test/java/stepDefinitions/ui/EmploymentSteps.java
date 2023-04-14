@@ -1,12 +1,11 @@
 package stepDefinitions.ui;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
-import pages.EmploymentPage;
-import pages.ExpensesPage;
-import pages.PathPage;
+import pages.ui.EmploymentPage;
+import pages.ui.ExpensesPage;
+import pages.ui.PathPage;
 import utils.Driver;
 import utils.SeleniumUtils;
 

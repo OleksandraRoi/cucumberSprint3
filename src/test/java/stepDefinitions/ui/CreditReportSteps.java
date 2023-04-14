@@ -4,8 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import pages.CreditReportPage;
-import pages.PathPage;
+import pages.ui.CreditReportPage;
+import pages.ui.PathPage;
 import utils.Driver;
 import utils.SeleniumUtils;
 

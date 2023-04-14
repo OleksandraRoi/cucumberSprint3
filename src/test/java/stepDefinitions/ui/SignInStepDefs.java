@@ -4,12 +4,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pages.LoginPage;
-import pages.SignInPage;
-import utils.ConfigReader;
+import pages.ui.LoginPage;
+import pages.ui.SignInPage;
 import utils.Driver;
 
 public class SignInStepDefs {

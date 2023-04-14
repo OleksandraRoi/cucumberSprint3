@@ -1,4 +1,4 @@
-package pages;
+package pages.ui;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;

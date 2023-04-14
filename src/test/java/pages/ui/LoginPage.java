@@ -1,4 +1,4 @@
-package pages;
+package pages.ui;
 
 import io.cucumber.java.eo.Se;
 import org.openqa.selenium.Keys;
