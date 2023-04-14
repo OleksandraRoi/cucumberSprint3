@@ -4,11 +4,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import pages.ExpensesPage;
-import pages.LoginPage;
-import pages.PathPage;
+import pages.ui.ExpensesPage;
+import pages.ui.LoginPage;
+import pages.ui.PathPage;
 import utils.Driver;
-import utils.SeleniumUtils;
 
 public class ExpensesSteps {
 

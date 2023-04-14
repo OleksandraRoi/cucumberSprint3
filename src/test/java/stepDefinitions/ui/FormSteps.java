@@ -1,7 +1,7 @@
 package stepDefinitions.ui;
 
 import io.cucumber.java.en.Then;
-import pages.PathPage;
+import pages.ui.PathPage;
 
 public class FormSteps {
 

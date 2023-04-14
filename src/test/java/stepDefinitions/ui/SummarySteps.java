@@ -2,8 +2,8 @@ package stepDefinitions.ui;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.PathPage;
-import pages.SummaryPage;
+import pages.ui.PathPage;
+import pages.ui.SummaryPage;
 
 public class SummarySteps {
     SummaryPage page = new SummaryPage();

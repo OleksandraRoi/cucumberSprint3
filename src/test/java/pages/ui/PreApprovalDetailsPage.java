@@ -1,4 +1,4 @@
-package pages;
+package pages.ui;
 
 import com.google.common.util.concurrent.ServiceManager;
 import io.cucumber.java.en.Then;

@@ -1,10 +1,11 @@
-package pages;
+package pages.ui;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.ui.ExpensesPage;
 import utils.Driver;
 
 import java.util.Random;
