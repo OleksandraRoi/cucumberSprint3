@@ -1,5 +1,4 @@
-
-
+@DB
 Feature: User Story 5
 
   As a user of the Duobank Mortgage Application, I want my employment and income details to be
@@ -42,18 +41,18 @@ Feature: User Story 5
   |income_source|
   |amount|
 
-  Scenario: The "employer_name" and “gross_monthly_income” columns should be required and not
-  empty.
+  Scenario: The "employer_name" and “gross_monthly_income” columns should be required and not empty.
     Given The database should have name and income values and not be null
-
+  @db_only
   Scenario: The "state" column should store two-letter abbreviations of US states
     Given Database should contain states abbreviations
+  @uiSide
+  Scenario: Filling out form on the UI side with different choices of income
+    Then User fills out the form with different income sources
 
   Scenario: The "income_source" column should only contain any of the following: Alimony/Child Support,
   Social Security/Disability Income, Unemployment Benefits, Interest and Dividends, VA
   Compensation, Royalty Payments, and Other Types of Income
-    Given The user is on Employment page
-    Then User fills out the form with different income sources
     Then Database income source table should have one the following
       |Alimony/Child Support            |
       |Social Security/Disability Income|

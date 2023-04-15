@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.ui.ExpensesPage;
+import pages.ui.LoginPage;
 import utils.DBUtils;
 import utils.Driver;
 
@@ -81,11 +82,20 @@ public class EEPage {
     private WebElement amountInput2;
     @FindBy(id = "amount3")
     private WebElement amountInput3;
+    @FindBy(xpath = "//label[@for='realtor2']")
+    private WebElement realtorClickBoxNo;
+    @FindBy(xpath="//label[@for='loanofficer2']")
+    private WebElement loanOfficerClickBoxNo;
+
+
     public void applicationWithRentCheckBox() {
         Faker faker = new Faker();
         Random random = new Random();
+        new LoginPage().login();
         mortgageButton.click();
-        realtorInfo.sendKeys(faker.name().username());
+        realtorClickBoxNo.click();
+        loanOfficerClickBoxNo.click();
+        //realtorInfo.sendKeys(faker.name().username());
         int housePrice = random.nextInt(500001) + 500000;
         purchasePrice.sendKeys(String.valueOf(housePrice));
         int downpaymantPrice = random.nextInt(50001) + 50000;
@@ -132,7 +142,9 @@ public class EEPage {
         Faker faker = new Faker();
         Random random = new Random();
         mortgageButton.click();
-        realtorInfo.sendKeys(faker.name().username());
+        realtorClickBoxNo.click();
+        loanOfficerClickBoxNo.click();
+        //realtorInfo.sendKeys(faker.name().username());
         int housePrice = random.nextInt(500001) + 500000;
         purchasePrice.sendKeys(String.valueOf(housePrice));
         int downpaymantPrice = random.nextInt(50001) + 50000;
@@ -144,7 +156,7 @@ public class EEPage {
         dateOfBirth.sendKeys("02021992");
         ssn.sendKeys(faker.numerify("#########"));
         maritalStatus.click();
-        searchBar.sendKeys("Married", Keys.ENTER);
+        searchBar.sendKeys("Divorced", Keys.ENTER);
         phoneNumber.sendKeys(faker.phoneNumber().cellPhone());
         homeNumber.sendKeys(faker.phoneNumber().cellPhone());
         nextButton.click();
@@ -163,9 +175,9 @@ public class EEPage {
         new Select(incomeSource1).selectByValue("Interest and Dividends");
         amountInput1.sendKeys("1500");
         new Select(incomeSource2).selectByValue("VA Compensation");
-        amountInput1.sendKeys("500");
+        amountInput2.sendKeys("500");
         new Select(incomeSource3).selectByValue("Royalty Payments");
-        amountInput1.sendKeys("6000");
+        amountInput3.sendKeys("6000");
         nextButton.click();
         new ExpensesPage().scrollUp();
         nextButton.click();
@@ -180,6 +192,7 @@ public class EEPage {
     public void beforeBenefints(){
         Faker faker = new Faker();
         Random random = new Random();
+        new LoginPage().login();
         mortgageButton.click();
         realtorInfo.sendKeys(faker.name().username());
         int housePrice = random.nextInt(500001) + 500000;
@@ -223,12 +236,12 @@ public class EEPage {
     }
     public void applicationWithOtherTypesOfIncome() {
         beforeBenefints();
-        new Select(incomeSource1).selectByValue("Alimony/Child Support");
+        new Select(incomeSource1).selectByValue("Other Types of Income");
         amountInput1.sendKeys("2000");
-        new Select(incomeSource2).selectByValue("VA Compensation");
-        amountInput1.sendKeys("400");
+        new Select(incomeSource2).selectByValue("Other Types of Income");
+        amountInput2.sendKeys("4000");
         new Select(incomeSource3).selectByValue("Other Types of Income");
-        amountInput1.sendKeys("12000");
+        amountInput3.sendKeys("12000");
         afterBenefits();
     }
 
