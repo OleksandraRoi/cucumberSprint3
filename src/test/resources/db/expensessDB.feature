@@ -14,16 +14,20 @@
     |monthly_rental_payment|
     |first_mortagage_total_payment|
 
-
-  Scenario: The "rent_own_status" field should only allow two values, "Rent" and "Own".
+@checkBox
+  Scenario: Filling out UI side with Rent and Own checkboxes
     Given The user filling out form with Rent check box
     Given The user filling out form with Own check box
+
+
+  Scenario: The "rent_own_status" field should only allow two values, "Rent" and "Own".
     Then On the database the rent_own_status should have only "Rent" or "Own" values
-    @db_only
+
+
   Scenario: The "monthly_rental_payment" and "first_mortgage_total_payment" fields should only allow
   positive numeric values
-    Then The "monthly_rental_payment" field should have only positive numeric values
-      And The "first_mortgage_total_payment" field should have only positive numeric values too
+    Then The monthly_rental_payment field should have only positive numeric values
+      And The first_mortgage_total_payment field should have only positive numeric values
 
   Scenario: Upon successful submission of the page information, the "Expenses" page form fields should be
   mapped to their corresponding columns in the “tbl_mortagage” table in the database
