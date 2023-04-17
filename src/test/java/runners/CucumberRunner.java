@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
                 "pretty",
                 "html:target/basic-report/report.html"
         }
-        ,dryRun = true
+//        ,dryRun = true
 )
 public class CucumberRunner {
 }

@@ -240,6 +240,7 @@ public class EEPage {
      public void mappingEmployer(){
          Faker faker = new Faker();
          Random random = new Random();
+         new LoginPage().login();
          new PathPage().pathToEmployment();
          empName.sendKeys("Consulting LLC");
          position.sendKeys("accountant");
