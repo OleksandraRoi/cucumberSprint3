@@ -29,7 +29,7 @@
     Then The monthly_rental_payment field should have only positive numeric values
     And The first_mortgage_total_payment field should have only positive numeric values
 
-
+@mapping
   Scenario: Upon successful submission of the page information, the "Expenses" page form fields should be
   mapped to their corresponding columns in the “tbl_mortagage” table in the database
     Given The user is filling out the form with the next input

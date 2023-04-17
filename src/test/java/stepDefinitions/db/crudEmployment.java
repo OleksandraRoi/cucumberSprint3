@@ -10,6 +10,7 @@ import pages.ui.LoginPage;
 import utils.DBUtils;
 
 import java.util.List;
+import java.util.Map;
 
 public class crudEmployment {
 
@@ -56,8 +57,10 @@ public class crudEmployment {
         List<String> result = DBUtils.getColumnNames("select income_source from loan.tbl_mortagage");
         Assert.assertTrue(result.contains(expected));
     }
-    @Given("Database should have the entered by user information mapped accordingly")
-    public void database_should_have_the_entered_by_user_information_mapped_accordingly() {
+
+
+    @Then("Database should have the entered by user information mapped accordingly")
+    public void database_should_have_the_entered_by_user_information_mapped_accordingly(List<Map<String,String>> dataTable) {
 
     }
 }

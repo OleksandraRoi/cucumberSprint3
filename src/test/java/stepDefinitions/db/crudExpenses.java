@@ -2,7 +2,9 @@ package stepDefinitions.db;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import pages.db.EEPage;
 import pages.ui.LoginPage;
 import utils.DBUtils;
@@ -59,10 +61,23 @@ public class crudExpenses {
 
     @Given("The user is filling out the form with the next input")
     public void the_user_is_filling_out_the_form_with_the_next_input(List<Map<String,String>> dataTable) {
-        new EEPage().own5000();
+//        new EEPage().own5000();
     }
     @Given("The input information should be mapped in database correctly")
     public void he_input_information_should_be_mapped_in_database_correctly(List<Map<String,String>> dataTable) {
+
+        String expectedText = dataTable.get(0).get("rent_own_status");
+        String expectedPayment = dataTable.get(0).get("first_mortgage_total_payment");
+
+        List<Map<String, Object>> actual = DBUtils.getListOfMaps("select * from loan.tbl_mortagage where b_email='star@gmail.com'");
+        String actualText = (String) (actual.get(0).get("rent_own_status"));
+        String actualPayment = (String) (actual.get(0).get("first_mortgage_total_payment"));
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(actualText).isEqualTo(expectedText);
+        softAssertions.assertThat(actualPayment).isEqualTo(expectedPayment);
+
+        softAssertions.assertAll();
 
     }
 

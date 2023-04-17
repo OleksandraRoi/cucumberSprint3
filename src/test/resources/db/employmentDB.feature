@@ -62,9 +62,14 @@ Feature: User Story 5
       |Royalty Payments                 |
       |Other Types of Income            |
 
+    @mp
   Scenario: Upon successful submission of the page information, the "Employment and income details"
   page form fields should be mapped to their corresponding columns in the “tbl_mortagage” table
   in the database.
-    Given Database should have the entered by user information mapped accordingly
-
+    Given The user filling out employment form
+      |employer_name   |position  |city       |state|start_date|gross_monthly_income|monthly_overtime|monthly_bonuses|monthly_commissions|monthly_dividends|income_source        |amount|
+      |Consulting LLC  |accountant|Arlington  |VA   |2016-02-02|5000                |100             |500            |200                |1000             |Other Types of Income|10000 |
+    Then Database should have the entered by user information mapped accordingly
+      |employer_name   |position  |city       |state|start_date|gross_monthly_income|monthly_overtime|monthly_bonuses|monthly_commissions|monthly_dividends|income_source        |amount|
+      |Consulting LLC  |accountant|Arlington  |VA   |2016-02-02|5000                |100             |500            |200                |1000             |Other Types of Income|10000 |
 
