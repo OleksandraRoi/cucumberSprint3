@@ -6,13 +6,14 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.ConfigReader;
+import utils.DBUtils;
 import utils.Driver;
 
 import java.time.Duration;
 
 public class Hooks {
 
-    @Before () // runs before each scenario tagged with @UI
+    @Before ("not @db_only") // runs before each scenario tagged with @UI
     public void setup() {
 
         String environment = System.getProperty("env");
@@ -39,12 +40,25 @@ public class Hooks {
         }
     }
 
-        @After
-    public void tearDown(Scenario scenario){
-        if(scenario.isFailed()){
-           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-           scenario.attach(screenshotFile, "image/png", "screenshot");
-        }
-        Driver.quitDriver();
+    @Before ("@DB") // runs before each scenario tagged with @UI
+    public void setUpScenarioForDbTests(){
+        DBUtils.createConnection();
     }
+    //
+    @After ("@DB") // runs before each scenario tagged with @UI
+    public void tearDownScenarioForDbTests(){
+        DBUtils.close();
+    }
+
+
+//        @After("not @db_only")
+//    public void tearDown(Scenario scenario){
+//        if(scenario.isFailed()){
+//           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+//           scenario.attach(screenshotFile, "image/png", "screenshot");
+//        }
+//        Driver.quitDriver();
+//    }
+
+
 }

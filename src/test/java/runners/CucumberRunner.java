@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@b",
+        tags = "@uiSide",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
                 "pretty",
                 "html:target/basic-report/report.html"
         }
+//        ,dryRun = true
 )
 public class CucumberRunner {
 }
