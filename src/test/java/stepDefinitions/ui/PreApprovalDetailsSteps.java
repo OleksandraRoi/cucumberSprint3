@@ -4,13 +4,10 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import pages.PreApprovalDetailsPage;
+import pages.ui.PreApprovalDetailsPage;
 import utils.Driver;
-import utils.SeleniumUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PreApprovalDetailsSteps {

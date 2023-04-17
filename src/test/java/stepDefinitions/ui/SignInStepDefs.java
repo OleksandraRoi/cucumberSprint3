@@ -4,12 +4,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pages.LoginPage;
-import pages.SignInPage;
-import utils.ConfigReader;
+import pages.ui.LoginPage;
+import pages.ui.SignInPage;
 import utils.Driver;
 
 public class SignInStepDefs {
@@ -86,8 +83,9 @@ Assert.assertFalse(new SignInPage().getSignInButton().isEnabled(),"The sign-in b
     }
         @Then("user should  be able to click on submit and proceed")
         public void user_should_be_able_to_click_on_submit_and_proceed() {
-        new SignInPage().clickOnSignInButton();
-        Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/dashboard.php",Driver.getDriver().getCurrentUrl());
+            new SignInPage().Email().sendKeys("teamd6@gmail.com");
+            new SignInPage().Password().sendKeys("teamd");
+        Assert.assertEquals("http://qa-duobank.us-east-2.elasticbeanstalk.com/index.php",Driver.getDriver().getCurrentUrl());
     }
 
 }

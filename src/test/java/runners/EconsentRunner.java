@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        tags = "@1st or @2nd or @3rd or @4th",
+        tags = "1st or @2nd or @3rd or @4th",//or @2nd or @3rd or @4th
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
@@ -18,5 +18,6 @@ import org.junit.runner.RunWith;
         }
 )
 public class EconsentRunner {
+
 
 }
