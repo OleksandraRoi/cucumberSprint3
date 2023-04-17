@@ -8,8 +8,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import pages.ui.EmploymentPage;
 import pages.ui.ExpensesPage;
 import pages.ui.LoginPage;
+import pages.ui.PathPage;
 import utils.DBUtils;
 import utils.Driver;
 
@@ -86,6 +88,8 @@ public class EEPage {
     private WebElement realtorClickBoxNo;
     @FindBy(xpath="//label[@for='loanofficer2']")
     private WebElement loanOfficerClickBoxNo;
+    @FindBy(xpath = "//label[@for='currentjob1']")
+    private WebElement currentJobCheckBox;
 
 
 
@@ -233,4 +237,23 @@ public class EEPage {
        afterExpenses();
 }
 
+     public void mappingEmployer(){
+         Faker faker = new Faker();
+         Random random = new Random();
+         new PathPage().pathToEmployment();
+         empName.sendKeys("Consulting LLC");
+         position.sendKeys("accountant");
+         city.sendKeys("Arlington");
+         state.click();
+         state.sendKeys("VA", Keys.ENTER);
+         startDate.sendKeys("2016-02-02");
+         monthlyIncome.sendKeys("5000 ");
+         new EmploymentPage().getMonthlyOvertime().sendKeys("100");
+         new EmploymentPage().getMonthlyBonus().sendKeys("500");
+         new EmploymentPage().getMonthlyCommission().sendKeys("200");
+         new EmploymentPage().getMonthlyInterest().sendKeys("1000");
+         new Select(incomeSource1).selectByValue("Other Types of Income");
+         amountInput1.sendKeys("10000");
+         afterBenefits();
+    }
 }

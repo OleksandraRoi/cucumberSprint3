@@ -1,6 +1,7 @@
 package pages.ui;
 
 import com.github.javafaker.Faker;
+import lombok.Data;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ import utils.SeleniumUtils;
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
 public class EmploymentPage {
 
     public EmploymentPage(){ PageFactory.initElements(Driver.getDriver(), this);}
