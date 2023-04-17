@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@max and @db_only",
+        tags = "@max and @db_only and @DB",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
