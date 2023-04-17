@@ -7,6 +7,9 @@ import org.junit.Assert;
 import pages.EconsentPage;
 import pages.PathPage;
 import pages.LoginPage;
+import pages.ui.EconsentPage;
+import pages.ui.LoginPage;
+import pages.ui.PathPage;
 import utils.Driver;
 import utils.SeleniumUtils;
 
@@ -29,7 +32,7 @@ public class EconsentStepDefinitions extends PathPage {
     }
     @When("The user enters their random first name, last name, and email address")
     public void the_user_enters_their_random_first_name_last_name_and_email_address() {
-       new  EconsentPage().fillTheFormWithRandomData();
+       new EconsentPage().fillTheFormWithRandomData();
 
     }
     @Then("The user should see the first name and last name filled up")
