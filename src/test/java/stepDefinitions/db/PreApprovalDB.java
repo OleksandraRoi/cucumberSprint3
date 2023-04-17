@@ -3,7 +3,6 @@ package stepDefinitions.db;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
-import pages.PreApprovalDetailsPage;
 import utils.DBUtils;
 
 import java.util.ArrayList;
