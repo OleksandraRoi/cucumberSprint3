@@ -9,6 +9,7 @@ import utils.DBUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class crudExpenses {
 
@@ -55,10 +56,17 @@ public class crudExpenses {
         }
         System.out.println(intRowOwn);
     }
+
+    @Given("The user is filling out the form with the next input")
+    public void the_user_is_filling_out_the_form_with_the_next_input(List<Map<String,String>> dataTable) {
+        new EEPage().own5000();
+    }
     @Given("The input information should be mapped in database correctly")
-    public void the_input_information_should_be_mapped_in_database_correctly() {
+    public void he_input_information_should_be_mapped_in_database_correctly(List<Map<String,String>> dataTable) {
 
     }
+
+
 
 
 }

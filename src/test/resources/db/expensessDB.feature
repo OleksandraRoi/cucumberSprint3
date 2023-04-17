@@ -27,8 +27,14 @@
   Scenario: The "monthly_rental_payment" and "first_mortgage_total_payment" fields should only allow
   positive numeric values
     Then The monthly_rental_payment field should have only positive numeric values
-      And The first_mortgage_total_payment field should have only positive numeric values
+    And The first_mortgage_total_payment field should have only positive numeric values
+
 
   Scenario: Upon successful submission of the page information, the "Expenses" page form fields should be
   mapped to their corresponding columns in the “tbl_mortagage” table in the database
-    Given The input information should be mapped in database correctly
+    Given The user is filling out the form with the next input
+      |rent_own_status|first_mortgage_total_payment|
+      |Own            |5000                        |
+    Then The input information should be mapped in database correctly
+      |rent_own_status|first_mortgage_total_payment|
+      |Own            |5000                        |

@@ -88,7 +88,8 @@ public class EEPage {
     private WebElement loanOfficerClickBoxNo;
 
 
-    public void applicationWithRentCheckBox() {
+
+    public void beforeEmail() {
         Faker faker = new Faker();
         Random random = new Random();
         new LoginPage().login();
@@ -103,7 +104,10 @@ public class EEPage {
         nextButton.click();
         firstName.sendKeys(faker.name().firstName());
         lastName.sendKeys(faker.name().lastName());
-        email.sendKeys(faker.internet().emailAddress());
+    }
+
+        public void afterEmail(){
+            Faker faker = new Faker();
         dateOfBirth.sendKeys("02021992");
         ssn.sendKeys(faker.numerify("#########"));
         maritalStatus.click();
@@ -111,9 +115,10 @@ public class EEPage {
         phoneNumber.sendKeys(faker.phoneNumber().cellPhone());
         homeNumber.sendKeys(faker.phoneNumber().cellPhone());
         nextButton.click();
-        new ExpensesPage().scrollUp();
-        new ExpensesPage().monthlyRentalPaymentCorrectInput();
-        new ExpensesPage().nextClick();
+    }
+
+    public void afterExpenses(){
+        Faker faker = new Faker();
         empName.sendKeys(faker.name().fullName());
         position.sendKeys(faker.company().profession());
         city.sendKeys(faker.address().city());
@@ -138,58 +143,30 @@ public class EEPage {
         nextButton.click();
         submitButton.click();
     }
+    public void applicationWithRentCheckBox() {
+        Faker faker = new Faker();
+        beforeEmail();
+        email.sendKeys(faker.internet().emailAddress());
+        afterEmail();
+        new ExpensesPage().scrollUp();
+        new ExpensesPage().monthlyRentalPaymentCorrectInput();
+        new ExpensesPage().nextClick();
+        afterExpenses();
+
+    }
     public void applicationWithOwnCheckBox() {
         Faker faker = new Faker();
-        Random random = new Random();
-        mortgageButton.click();
-        realtorClickBoxNo.click();
-        loanOfficerClickBoxNo.click();
-        //realtorInfo.sendKeys(faker.name().username());
-        int housePrice = random.nextInt(500001) + 500000;
-        purchasePrice.sendKeys(String.valueOf(housePrice));
-        int downpaymantPrice = random.nextInt(50001) + 50000;
-        downpaymant.sendKeys(String.valueOf(downpaymantPrice));
-        nextButton.click();
-        firstName.sendKeys(faker.name().firstName());
-        lastName.sendKeys(faker.name().lastName());
+        beforeEmail();
         email.sendKeys(faker.internet().emailAddress());
-        dateOfBirth.sendKeys("02021992");
-        ssn.sendKeys(faker.numerify("#########"));
-        maritalStatus.click();
-        searchBar.sendKeys("Divorced", Keys.ENTER);
-        phoneNumber.sendKeys(faker.phoneNumber().cellPhone());
-        homeNumber.sendKeys(faker.phoneNumber().cellPhone());
-        nextButton.click();
+        afterEmail();
         new ExpensesPage().scrollUp();
         new ExpensesPage().ownCheckBoxClick();
         new ExpensesPage().monthlyMortgagePaymentCorrectInput();
         new ExpensesPage().nextClick();
-        empName.sendKeys(faker.name().fullName());
-        position.sendKeys(faker.company().profession());
-        city.sendKeys(faker.address().city());
-        state.click();
-        state.sendKeys("T", Keys.ENTER);
-        startDate.sendKeys(faker.backToTheFuture().date());
-        int salary = faker.number().numberBetween(4000, 15000);
-        monthlyIncome.sendKeys(String.valueOf(salary));
-        new Select(incomeSource1).selectByValue("Interest and Dividends");
-        amountInput1.sendKeys("1500");
-        new Select(incomeSource2).selectByValue("VA Compensation");
-        amountInput2.sendKeys("500");
-        new Select(incomeSource3).selectByValue("Royalty Payments");
-        amountInput3.sendKeys("6000");
-        nextButton.click();
-        new ExpensesPage().scrollUp();
-        nextButton.click();
-        firstNameOnConsent.sendKeys(faker.name().firstName());
-        lastNameOnConsent.sendKeys(faker.name().lastName());
-        emailConsent.sendKeys(faker.internet().emailAddress());
-        agreeCheckBox.click();
-        nextButton.click();
-        submitButton.click();
+        afterExpenses();
     }
 
-    public void beforeBenefints(){
+    public void beforeBenefits(){
         Faker faker = new Faker();
         Random random = new Random();
         new LoginPage().login();
@@ -235,7 +212,7 @@ public class EEPage {
         submitButton.click();
     }
     public void applicationWithOtherTypesOfIncome() {
-        beforeBenefints();
+        beforeBenefits();
         new Select(incomeSource1).selectByValue("Other Types of Income");
         amountInput1.sendKeys("2000");
         new Select(incomeSource2).selectByValue("Other Types of Income");
@@ -245,6 +222,15 @@ public class EEPage {
         afterBenefits();
     }
 
-
+   public void own5000(){
+       beforeEmail();
+       email.sendKeys("star@gmail.com");
+       afterEmail();
+       new ExpensesPage().scrollUp();
+       new ExpensesPage().ownCheckBoxClick();
+       new ExpensesPage().getMonthlyMortgagePayment().sendKeys("5000");
+       new ExpensesPage().nextClick();
+       afterExpenses();
+}
 
 }
