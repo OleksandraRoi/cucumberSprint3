@@ -9,6 +9,7 @@ import pages.db.EEPage;
 import pages.ui.LoginPage;
 import utils.DBUtils;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,8 +65,9 @@ public class crudExpenses {
 //        new EEPage().own5000();
     }
     @Given("The input information should be mapped in database correctly")
-    public void he_input_information_should_be_mapped_in_database_correctly(List<Map<String,String>> dataTable) {
+    public void he_input_information_should_be_mapped_in_database_correctly(List<Map<String,String>> dataTable) throws SQLException {
 
+        try{
         String expectedText = dataTable.get(0).get("rent_own_status");
         String expectedPayment = dataTable.get(0).get("first_mortgage_total_payment");
 
@@ -79,9 +81,8 @@ public class crudExpenses {
 
         softAssertions.assertAll();
 
+        }finally{
+            DBUtils.executeUpdate("DELETE FROM loan.tbl_mortagage where b_email='star@gmail.com'");
+        }
     }
-
-
-
-
 }
