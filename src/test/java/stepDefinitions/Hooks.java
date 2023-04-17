@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class Hooks {
 
-    @Before ("not @db_only") // runs before each scenario tagged with @UI
+    @Before ("not @db_only1") // runs before each scenario tagged with @UI
     public void setup() {
 
         String environment = System.getProperty("env");
