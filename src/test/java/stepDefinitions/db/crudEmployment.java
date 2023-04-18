@@ -74,55 +74,31 @@ public class crudEmployment {
 
         try {
             String expEmpName = dataTable.get(0).get("employer_name");
-            System.out.println(expEmpName);
             String expPosition = dataTable.get(0).get("position");
-            System.out.println(expPosition);
             String expCity = dataTable.get(0).get("city");
-            System.out.println(expCity);
             String expState = dataTable.get(0).get("state");
-            System.out.println(expState);
             String expStartDate = dataTable.get(0).get("start_date");
-            System.out.println(expStartDate);
             String expIncome = dataTable.get(0).get("gross_monthly_income");
-            System.out.println(expIncome);
             String expOvertime = dataTable.get(0).get("monthly_overtime");
-            System.out.println(expOvertime);
             String expBonus = dataTable.get(0).get("monthly_bonuses");
-            System.out.println(expBonus);
             String expCommissions = dataTable.get(0).get("monthly_commision");
-            System.out.println(expCommissions);
             String expDividends = dataTable.get(0).get("monthly_dividents");
-            System.out.println(expDividends);
             String expIncomeSource = dataTable.get(0).get("income_source");
-            System.out.println(expIncomeSource);
             String expAmount = dataTable.get(0).get("amount");
-            System.out.println(expAmount);
 
             List<Map<String, Object>> actual = DBUtils.getListOfMaps("select * from loan.tbl_mortagage where employer_name='Consulting LLC'");
             String actEmpName = dataTable.get(0).get("employer_name");
-            System.out.println(actEmpName);
             String actPosition = dataTable.get(0).get("position");
-            System.out.println(actPosition);
             String actCity = dataTable.get(0).get("city");
-            System.out.println(actCity);
             String actState = dataTable.get(0).get("state");
-            System.out.println(actState);
             String actStartDate = dataTable.get(0).get("start_date");
-            System.out.println(actStartDate);
             String actIncome = dataTable.get(0).get("gross_monthly_income");
-            System.out.println(actIncome);
             String actOvertime = dataTable.get(0).get("monthly_overtime");
-            System.out.println(actOvertime);
             String actBonus = dataTable.get(0).get("monthly_bonuses");
-            System.out.println(actBonus);
             String actCommissions = dataTable.get(0).get("monthly_commision");
-            System.out.println(actCommissions);
             String actDividends = dataTable.get(0).get("monthly_dividents");
-            System.out.println(actDividends);
             String actIncomeSource = dataTable.get(0).get("income_source");
-            System.out.println(actIncomeSource);
             String actAmount = dataTable.get(0).get("amount");
-            System.out.println(actAmount);
 
             SoftAssertions softAssertions = new SoftAssertions();
 
