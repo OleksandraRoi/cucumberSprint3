@@ -59,7 +59,7 @@ public class ExpensesPage {
     }
     public void monthlyMortgagePaymentCorrectInput(){
         Random random =  new Random();
-        int own = random.nextInt(3501) + 2500;
+        int own = random.nextInt(2501) + 2500;
         monthlyMortgagePayment.sendKeys(String.valueOf(own));
     }
     public void nextClick(){ nextButton.click();}

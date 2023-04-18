@@ -95,7 +95,8 @@ public class PathPage {
         page1();
         page2();
         new ExpensesPage().scrollUp();
-        new ExpensesPage().monthlyRentalPaymentCorrectInput();
+        new ExpensesPage().ownCheckBoxClick();
+        new ExpensesPage().monthlyMortgagePaymentCorrectInput();
         new ExpensesPage().nextClick();
     }
 

@@ -7,11 +7,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-//        @DB and @db_only
+//        @DB and @db_only1
 //        @DB and @uiSide
 //        @DB and @mapping
 
-        tags = "@DB and @db_only1",
+        tags = "@DB and @mapping",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,

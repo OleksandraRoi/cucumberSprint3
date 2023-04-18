@@ -8,33 +8,29 @@ Background: Common steps for all scenarios
 
 
 @1st
-Scenario: User can provide electronic consent
+Scenario: User can provide electronic consent filling up the form first name last name and email
   Given The user is on the electronic consent page
-When The user enters their first name, last name, and email address
-And The user clicks on the “Agree” radio button
-Then The user should be able to proceed with the application
-And The user should see a confirmation message on the next page
+When The user enters their random first name, last name, and email address
+Then The user should see the first name and last name filled up
 
 @2nd
 Scenario: User cannot proceed without providing required information
   Given The user is on the electronic consent page
-When The user leaves any required field empty
-And The user clicks on the “Agree” radio button
-Then The user should see an error message next to the empty field(s)
-And The user should not be able to proceed with the application
+Then The user should see Agree button selected by default
+
 
 @3rd
 Scenario: User can review disclosures before providing consent
 Given The user is on the electronic consent page
-When The user clicks on the link to view the disclosures
-Then The user should be taken to a page with the necessary disclosures related to the loan application
-And The user should be able to read and review the disclosures before providing consent
-And The user should be able to navigate back to the electronic consent page
+When The user doe not agree to the terms and conditions of eConsent
+  When The user enters their random first name, last name, and email address
+Then User clicks on Do not agree button
+And The user should be returned to the main application
+
 
 @4th
 Scenario: User can choose not to provide electronic consent
 Given The user is on the electronic consent page
-When The user clicks on the “Don’t Agree” radio button
-Then The user should be redirected back to the main application flow
-And The user should not be able to proceed with the application
-And The user should see a message explaining that they cannot proceed without providing electronic consent.
+  When The user enters their random first name, last name, and email address
+  When The user clicks on the  Agree button
+Then The user should be able to proceed to the next step

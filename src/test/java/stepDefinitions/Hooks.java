@@ -51,14 +51,14 @@ public class Hooks {
     }
 
 
-//        @After("not @db_only")
-//    public void tearDown(Scenario scenario){
-//        if(scenario.isFailed()){
-//           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-//           scenario.attach(screenshotFile, "image/png", "screenshot");
-//        }
-//        Driver.quitDriver();
-//    }
+        @After("not @db_only")
+    public void tearDown(Scenario scenario){
+        if(scenario.isFailed()){
+           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+           scenario.attach(screenshotFile, "image/png", "screenshot");
+        }
+        Driver.quitDriver();
+    }
 
 
 }
