@@ -96,7 +96,7 @@ public class EEPage {
     public void beforeEmail() {
         Faker faker = new Faker();
         Random random = new Random();
-        new LoginPage().login();
+        new LoginPage().signUpAndLogin();
         mortgageButton.click();
         realtorClickBoxNo.click();
         loanOfficerClickBoxNo.click();
@@ -149,6 +149,7 @@ public class EEPage {
     }
     public void applicationWithRentCheckBox() {
         Faker faker = new Faker();
+        new LoginPage().signUpAndLogin();
         beforeEmail();
         email.sendKeys(faker.internet().emailAddress());
         afterEmail();
@@ -173,7 +174,7 @@ public class EEPage {
     public void beforeBenefits(){
         Faker faker = new Faker();
         Random random = new Random();
-        new LoginPage().login();
+        new LoginPage().signUpAndLogin();
         mortgageButton.click();
         realtorInfo.sendKeys(faker.name().username());
         int housePrice = random.nextInt(500001) + 500000;
@@ -192,7 +193,8 @@ public class EEPage {
         homeNumber.sendKeys(faker.phoneNumber().cellPhone());
         nextButton.click();
         new ExpensesPage().scrollUp();
-        new ExpensesPage().monthlyRentalPaymentCorrectInput();
+        new ExpensesPage().ownCheckBoxClick();
+        new ExpensesPage().monthlyMortgagePaymentCorrectInput();
         new ExpensesPage().nextClick();
         empName.sendKeys(faker.name().fullName());
         position.sendKeys(faker.company().profession());
@@ -228,7 +230,7 @@ public class EEPage {
 
    public void own5000(){
        beforeEmail();
-       email.sendKeys("star@gmail.com");
+       email.sendKeys("fish@gmail.com");
        afterEmail();
        new ExpensesPage().scrollUp();
        new ExpensesPage().ownCheckBoxClick();
@@ -240,8 +242,13 @@ public class EEPage {
      public void mappingEmployer(){
          Faker faker = new Faker();
          Random random = new Random();
-         new LoginPage().login();
-         new PathPage().pathToEmployment();
+         beforeEmail();
+         email.sendKeys("moon@gmail.com");
+         afterEmail();
+         new ExpensesPage().scrollUp();
+         new ExpensesPage().ownCheckBoxClick();
+         new ExpensesPage().getMonthlyMortgagePayment().sendKeys("5000");
+         new ExpensesPage().nextClick();
          empName.sendKeys("Consulting LLC");
          position.sendKeys("accountant");
          city.sendKeys("Arlington");

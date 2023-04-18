@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class Hooks {
 
-    @Before ("not @db_only1") // runs before each scenario tagged with @UI
+    @Before ("not @db_only") // runs before each scenario tagged with @UI
     public void setup() {
 
         String environment = System.getProperty("env");
@@ -51,14 +51,14 @@ public class Hooks {
     }
 
 
-//        @After("not @db_only")
-//    public void tearDown(Scenario scenario){
-//        if(scenario.isFailed()){
-//           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-//           scenario.attach(screenshotFile, "image/png", "screenshot");
-//        }
-//        Driver.quitDriver();
-//    }
+        @After("not @db_only")
+    public void tearDown(Scenario scenario){
+        if(scenario.isFailed()){
+           byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+           scenario.attach(screenshotFile, "image/png", "screenshot");
+        }
+        Driver.quitDriver();
+    }
 
 
 }
