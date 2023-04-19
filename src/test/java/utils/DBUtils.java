@@ -6,7 +6,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,6 +118,15 @@ public class DBUtils {
             e.printStackTrace();
         }
         return rowCount;
+    }
+
+    public static List<String> getSingleColumnValues(String columnName, String tableName ){
+        List<String> list =  new ArrayList<>();
+        for (Map<String, Object> row : getListOfMaps("SELECT "+columnName+" from "+tableName+"")) {
+            list.add((String)(row.get(columnName)));
+        }
+
+        return list;
     }
 
 }

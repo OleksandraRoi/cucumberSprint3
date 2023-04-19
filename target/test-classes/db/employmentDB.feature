@@ -49,7 +49,7 @@ Feature: User Story 5
   Scenario: The "state" column should store two-letter abbreviations of US states
     Given Database should contain states abbreviations
 
-#  @uiSide
+  @uiSide1
   Scenario: Filling out form on the UI side with different choices of income
     Then User fills out the form with different income sources
 
@@ -66,7 +66,7 @@ Feature: User Story 5
       |Royalty Payments                 |
       |Other Types of Income            |
 
-    @mapping
+    @mapping1
   Scenario: Upon successful submission of the page information, the "Employment and income details"
   page form fields should be mapped to their corresponding columns in the “tbl_mortagage” table
   in the database.
