@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 //        @DB and @uiSide
 //        @DB and @mapping
 
-        tags = "@DB and @mapping",
+        tags = "@DB and @uiSide",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
