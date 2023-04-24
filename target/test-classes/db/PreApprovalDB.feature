@@ -25,4 +25,14 @@ Feature: User story 2
     Scenario: realtor_status and loan_officer_status check
       Then realtor_status and loan_officer_status column values be stored as integers 1 or 2
 
+    Scenario: The database should ensure that each mortgage application is associated with a unique
+    identifier (id)
+      Then check if an id is unique
+
+    Scenario: If the user selects "Yes" for the realtor question,realtor_info field is not empty.
+      Then check all Yes column in realtor_info
+
+    Scenario: check purpose_loan column
+      Then purpose_loan column should contains "Purchase a Home" or "Refinance" or "Construction"
+
 

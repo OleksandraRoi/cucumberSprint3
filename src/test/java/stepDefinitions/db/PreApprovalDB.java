@@ -5,8 +5,10 @@ import io.cucumber.java.en.Then;
 import org.testng.Assert;
 import utils.DBUtils;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PreApprovalDB {
     @Then("tbl_mortagage should be stored in the following order")
@@ -28,5 +30,29 @@ public class PreApprovalDB {
             Assert.assertTrue(one==1 || one==2);
         }
 
+    }
+
+    @Then("check if an id is unique")
+    public void checkIfAnInIsUnique() {
+        List<List<Object>> id = DBUtils.getListOfLists("Select count(*) from loan.tbl_mortagage group by id");
+        for(Object one :id.get(0)){
+            Assert.assertEquals(String.valueOf(one),"1");
+        }
+    }
+
+    @Then("check all Yes column in realtor_info")
+    public void checkAllYesColumnInRealtor_info() {
+        List<List<Object>> name = DBUtils.getListOfLists("select realtor_info from loan.tbl_mortagage where realtor_status=1");
+        System.out.println(name);
+        for (List<Object> one: name){
+        Assert.assertTrue(!String.valueOf(one).isEmpty());
+        }
+    }
+
+    @Then("purpose_loan column should contains {string} or {string} or {string}")
+    public void purpose_loanColumnShouldContainsOrOr(String First, String Second, String Third) {
+        for (String one:DBUtils.getSingleColumnValues("purpose_loan","loan.tbl_mortagage ")){
+            Assert.assertTrue(one.equals(First)||one.equals(Second)||one.equals(Third));
+        }
     }
 }
