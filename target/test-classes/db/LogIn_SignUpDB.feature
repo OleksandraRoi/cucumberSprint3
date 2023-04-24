@@ -1,47 +1,91 @@
-Feature: User Story 1 - Log In and Sign Up DB
+@DB
+Feature: As a user of Duobank Mortgage Application, I want to be able to sign up and log in securely using a  database
+  system that protects my personal and financial information, so that I can complete the  mortgage application process with confidence.
 
-  As a user of Duobank Mortgage Application, I want to be able to sign up and log in securely using a
-  database system that protects my personal and financial information, so that I can complete the
-  mortgage application process with confidence.
+  @firstDB
+  Scenario Outline:Large number of Users should be able to signs up with
+    Then User enter firstName "<firstName>" , lastName "<lastName>" , email "<email>" , password "<password>" and enter
 
-  Background: Common steps for all scenarios
-    Given The user is on the logging page
+    Examples:
+      | firstName | lastName  | email                    | password       |
+      | Johnny    | Deep      | johnnyde2@gmail.com      | tsfhdifnf76bs  |
+      | Gaby      | Candle    | johnnycash22@gmail.com   | kdgcfxzv54gh   |
+      | Quentin   | Tarantino | stevejobs482@gmail.com   | kjh243gbskiyfs |
+      | Marlon    | Brando    | kulpasanto482@gmail.com  | gabsf5sgsds    |
+      | Fantomas  | Somatos   | sfantomastom28@gmail.com | kjh243gbskiyfs |
+      | Kevin     | Shein     | skevinshein2@gmail.com   | kjh243gbskiyfs |
+      | Katie     | Levin     | katialevin2@gmail.com    | ooopshd58dgdvv |
+      | Sonic     | Faster    | sonicvan232@gmail.com    | udygv77stv     |
+      | Willie    | Wonka     | choccolate2@gmail.com    | hsgffff3444    |
 
-  Scenario: The database should be able to handle a large number of user signups without slowing down the system
-    Given The database is running and available for use
-    When Multiple users sign up simultaneously with unique information
-    Then The database should handle the load without slowing down the system
 
-  Scenario: Each user should have a unique username and email address associated with their account
-    Given A user is on the sign-up page
-    When The user enters an email address and a username that already exist in the database
-    Then The user should get an error message "Email address or username already exists"
-    And The email address or username should not be stored in the database
+  @temp
+  Scenario: verify if database handled it without slowing
 
-  Scenario: The "tbl_users" table should contain the following columns
-    Given The database is running and available for use
-    Then The "tbl_users" table should contain the following columns:
-      | id | email | password | first_name | last_name | phone | image | type | created_at | modified_at | zone_id | church_id | country_id | active |
+    Then The database should be able to handle without slowing down  the system
+      | Johnny   |
+      | Gaby     |
+      | Quentin  |
+      | Marlon   |
+      | Fantomas |
+      | Kevin    |
+      | Katie    |
+      | Sonic    |
+      | Willie   |
 
-  Scenario: The "tbl_users" table should not allow duplicate email addresses to be stored
-    Given A user is on the sign-up page
-    When The user enters an email address that already exists in the database
-    Then The user should get an error message "Email address already exists"
-    And The email address should not be stored in the database
 
-  Scenario: The "tbl_users" table should store a timestamp of when the user account was created
-    Given A user is on the sign-up page
-    When The user successfully signs up
-    Then The "created_at" field in the "tbl_users" table should contain the timestamp of when the user's account was created
+  @checkColumnNames
+  Scenario: The database should have "tbl_users" table
+    Then  DB should contain the following columns
+      | email       |
+      | password    |
+      | first_name  |
+      | last_name   |
+      | phone       |
+      | image       |
+      | type        |
+      | created_at  |
+      | modified_at |
+      | zone_id     |
+      | church_id   |
+      | country_id  |
+      | active      |
+      | id          |
 
-  Scenario: The database should store and encrypt user passwords in an MD5 hash
-    Given A user is on the sign-up page
-    When The user enters their password
-    Then The password should be encrypted using an MD5 hash
-    And The encrypted password should be stored in the "password" field of the "tbl_users" table
+  @db_only
+  Scenario: The database should ensure that each user has a unique username associated  with their account.
+    When  I send a request to retrieve duplicate usernames
+    Then  The result should be empty
 
-  Scenario: Upon successful submission of the sign-up information, the "Sign Up" page form fields should be mapped to their corresponding columns in the "tbl_users" table in the database
-    Given A user is on the sign-up page
-    When The user enters their information and clicks the "Sign Up" button
-    Then The information should be stored in the corresponding columns in the "tbl_users" table
-    And The user should be redirected to the login page.
+  @db_only
+  Scenario: The database should ensure that each user has a unique email address associated  with their account.
+    When  I send a request to retrieve duplicate emails
+    Then  The result should be empty right away
+
+  @db_only
+  Scenario: The "tbl_users" table should store a timestamp of when the user account was created.
+    When I send a request to retrieve created_at column
+    Then result should not be null
+
+
+  Scenario: The database should store and encrypt user passwords in an MD5 hash.
+    When user enters following credentials to sign up
+      | John              |
+      | Doe               |
+      | JohnDoe@gmail.com |
+      | johndoetester123  |
+    When I send a request to retrieve the password data from database
+    Then the data must be encrypted version
+
+  @dt
+  Scenario: Upon successful submission of the sign up information,the "Sign Up" page form fields should be
+  mapped to their corresponding columns in the “tbl_users” table in the database
+    When user enters following credentials to sign up fields
+      | first_name | last_name | email                 | password      |
+      | Sheldon    | Cooper    | sheldoncoop@gmail.com | sheldoncoo123 |
+    Then database should have corresponding column names and data
+      | first_name | last_name | email                 | password      |
+      | Sheldon    | Cooper    | sheldoncoop@gmail.com | sheldoncoo123 |
+
+
+
