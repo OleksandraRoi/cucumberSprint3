@@ -1,4 +1,4 @@
-@regression
+@regression1
 Feature: Employment feature
 
   As a user applying for a mortgage loan, I want to provide my employment and
