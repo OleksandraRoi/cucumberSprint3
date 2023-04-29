@@ -3,6 +3,7 @@ package stepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.restassured.RestAssured;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.ConfigReader;
@@ -13,7 +14,7 @@ import java.time.Duration;
 
 public class Hooks {
 
-    @Before ("not @db_only") // runs before each scenario tagged with @UI
+    @Before ("not @db_only and not @api") // runs before each scenario tagged with @UI
     public void setup() {
 
         String environment = System.getProperty("env");
@@ -40,18 +41,25 @@ public class Hooks {
         }
     }
 
-    @Before ("@DB") // runs before each scenario tagged with @UI
+
+    @Before ("@api")
+    public void setUpScenarioForApiTests(){
+        RestAssured.baseURI = ConfigReader.getProperty("base_URI");
+    }
+
+
+    @Before ("@DB")
     public void setUpScenarioForDbTests(){
         DBUtils.createConnection();
     }
     //
-    @After ("@DB") // runs before each scenario tagged with @UI
+    @After ("@DB")
     public void tearDownScenarioForDbTests(){
         DBUtils.close();
     }
 
 
-        @After("not @db_only")
+        @After("not @db_only and not @api")
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
            byte[] screenshotFile =  ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);

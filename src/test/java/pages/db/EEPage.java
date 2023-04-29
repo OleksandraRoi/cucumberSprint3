@@ -90,6 +90,8 @@ public class EEPage {
     private WebElement loanOfficerClickBoxNo;
     @FindBy(xpath = "//label[@for='currentjob1']")
     private WebElement currentJobCheckBox;
+    @FindBy(xpath = "//label[@for='coborrower1']")
+    private WebElement coborower;
 
 
 
@@ -263,5 +265,21 @@ public class EEPage {
          new Select(incomeSource1).selectByValue("Other Types of Income");
          amountInput1.sendKeys("10000");
          afterBenefits();
+    }
+
+    public void coborowerClcik(){
+        Faker faker = new Faker();
+        Random random = new Random();
+        new LoginPage().signUpAndLogin();
+        mortgageButton.click();
+        realtorClickBoxNo.click();
+        loanOfficerClickBoxNo.click();
+        //realtorInfo.sendKeys(faker.name().username());
+        int housePrice = random.nextInt(500001) + 500000;
+        purchasePrice.sendKeys(String.valueOf(housePrice));
+        int downpaymantPrice = random.nextInt(50001) + 50000;
+        downpaymant.sendKeys(String.valueOf(downpaymantPrice));
+        nextButton.click();
+        coborower.click();
     }
 }
