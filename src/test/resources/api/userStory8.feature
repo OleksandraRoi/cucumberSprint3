@@ -1,9 +1,11 @@
+@api @8
 Feature: usr story 8
 
   As a loan officer, I want to be able to retrieve a list of mortgage
   applications for a specific user, so that I can review their application
   status and history.
 
+  Scenario: getting a user information
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When the "GET" request is sent to "/applications"
@@ -19,6 +21,8 @@ Feature: usr story 8
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
+
+  Scenario: getting a user information as an administrator
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When the "GET" request is sent to "/applications"
@@ -26,10 +30,12 @@ Feature: usr story 8
   Then the status code should be 201
   When the user making the request as an administrator, as type 1 user
   Then all mortgage applications in the system must be returned
-  And The list of mortgage applications must be ordered by creation date (newest to oldest)
+  And the list of mortgage applications must be ordered by creation date (newest to oldest)
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
+
+  Scenario: getting a user information as not an administrator
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When the "GET" request is sent to "/applications"
@@ -41,6 +47,8 @@ Feature: usr story 8
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
+
+  Scenario: getting a user information with non existing ID
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When the "GET" request is sent to "/applications"
