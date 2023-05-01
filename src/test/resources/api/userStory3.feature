@@ -1,9 +1,11 @@
+@api @3
 Feature: usr story 3
 
   As a mortgage application user, I want to be able to create a new
   user account so that I can apply for a mortgage and access my
   account information.
 
+  Scenario: successfully posting new user
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When the "POST" request is sent to "/user"
@@ -17,17 +19,17 @@ Feature: usr story 3
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 5000 ms
 
+
+  Scenario: checking different scenarios with invalid input
   Given the correct key provided and the user is authenticated
   Then the "Content-type" is "application/json"
   When API key is not provided
   Then 401 Unauthorized status code with error message should be displayed
-  And JSON response and "Content-Type" header as "application/json"
-  And the response must be less than 5000 ms
   When the following fields are missing or empty:
-  |ofirst_name|
-  |olast_name|
-  |oemail|
-  |opassword|
+  |first_name|
+  |last_name|
+  |email|
+  |password|
   Then API should return a 422 Unprocessable Entity error with a message ""
   When the email address is invalid
   Then API should return a 422 Unprocessable Entity error with a message ""
@@ -38,3 +40,5 @@ Feature: usr story 3
   When the last name is invalid
   Then API should return a 422 Unprocessable Entity error with a message ""
   When the email address is already in use
+    And JSON response and "Content-Type" header as "application/json"
+    And the response must be less than 5000 ms
