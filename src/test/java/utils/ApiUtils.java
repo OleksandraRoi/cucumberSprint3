@@ -13,6 +13,7 @@ public class ApiUtils {
 
     private static RequestSpecification requestSpecification;
     private static Response response;
+    private static String JWTToken;
 
     public static void prepareAPI() {
         RestAssured.baseURI = ConfigReader.getProperty("base_URI");
@@ -29,17 +30,17 @@ public class ApiUtils {
         requestSpecification = RestAssured.given();
     }
 
-    public static void setRequestQueryParameters(String key, String value){
+    public static void setRequestQueryParameters(String key, Object value){
         requestSpecification.
                 queryParam(key, value);
     }
 
-    public static void setRequestPathParameters(String key, String value){
+    public static void setRequestPathParameters(String key, Object value){
         requestSpecification.
                 pathParam(key, value);
     }
 
-    public static void setRequestHeaders(String key, String value){
+    public static void setRequestHeaders(String key, Object value){
         requestSpecification.
                 header(key, value);
     }
@@ -120,5 +121,16 @@ public class ApiUtils {
         }
 
         return response;
+    }
+
+    public static void setJWTToken(){
+        JWTToken = response.path("access_token");
+    }
+
+    public static String getJWTToken() {
+        if(JWTToken == null){
+            throw new RuntimeException("JWT Token is required for this request. Make sure to call POST /login before this request.");
+        }
+        return JWTToken;
     }
 }

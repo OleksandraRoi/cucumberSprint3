@@ -4,7 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class userStory3 {
+public class userStory3POST {
 
     @Given("the correct key provided and the user is authenticated")
     public void the_correct_key_provided_and_the_user_is_authenticated() {
@@ -27,7 +27,7 @@ public class userStory3 {
 
     }
     @Then("the following information should be displayed")
-    public void the_following_information_should_be_displayed(io.cucumber.datatable.DataTable dataTable) {
+    public void the_following_information_should_be_displayed(String body) {
 
     }
     @Then("JSON response and {string} header as {string}")

@@ -3,7 +3,7 @@ package stepDefinitions.api;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class userStory8{
+public class userStory8GET {
 
     @Then("the status code should be {int}")
     public void the_status_code_should_be(Integer int1) {

@@ -48,6 +48,12 @@ public class Hooks {
         ApiUtils.prepareAPI();
     }
 
+    @After ("@api")
+    public void tearDownForAPI(Scenario scenario){
+        if(scenario.isFailed()){
+            scenario.attach(ApiUtils.getResponse().asPrettyString(), "text/plain", "responseBody");
+        }
+    }
 
     @Before ("@DB")
     public void setUpScenarioForDbTests(){
