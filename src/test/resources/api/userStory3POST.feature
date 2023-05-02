@@ -12,10 +12,12 @@ Feature: usr story 3
   Then the response log is shown
   When the new user was created
   Then the following information should be displayed
-  |status: 1|
-  |ohttp_code: 201|
-  |omessage: 'The user has been created.'|
-  |ouser_id: "the ID of the newly created user account."|
+  """{
+  "status" : 1,
+  "http_code" : 201,
+  "message" : "The user has been created.",
+  "user_id" : "the ID of the newly created user account."
+  }"""
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 5000 ms
 

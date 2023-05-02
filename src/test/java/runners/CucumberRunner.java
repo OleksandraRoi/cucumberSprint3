@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
 //        tags = "@DB and @mapping1",
 //        tags = "@DB and @mapping2",
 
-//        tags = "@api and @3",
-        tags = "@api and @8",
+        tags = "@api and @3",
+//        tags = "@api and @8",
         features = "src/test/resources",
         glue = "stepDefinitions",
         stepNotifications = true,
