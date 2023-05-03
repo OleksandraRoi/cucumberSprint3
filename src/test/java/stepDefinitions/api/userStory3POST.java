@@ -3,20 +3,22 @@ package stepDefinitions.api;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.ApiUtils;
+import utils.ConfigReader;
 
 public class userStory3POST {
 
     @Given("the correct key provided and the user is authenticated")
     public void the_correct_key_provided_and_the_user_is_authenticated() {
-
+        ApiUtils.setRequestQueryParameter("key", ConfigReader.getProperty("key"));
     }
-    @Then("the {string} is {string}")
-    public void the_is(String string, String string2) {
-
+    @Then("the header {string} is {string}")
+    public void the_header_is(String key, String value) {
+     ApiUtils.setRequestHeaders(key, value);
     }
     @When("the {string} request is sent to {string}")
-    public void the_request_is_sent_to(String string, String string2) {
-
+    public void the_request_is_sent_to(String request, String endPoint) {
+      ApiUtils.sendRequest(request,endPoint);
     }
     @Then("the response log is shown")
     public void the_response_log_is_shown() {
@@ -44,7 +46,7 @@ public class userStory3POST {
     public void api_key_is_not_provided() {
 
     }
-    @Then("{int} Unauthorized status code with error message should be displayed")
+    @Then("{int} Unauthorized status code with error message {string} should be displayed")
     public void unauthorized_status_code_with_error_message_should_be_displayed(Integer int1) {
 
     }
