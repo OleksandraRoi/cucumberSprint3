@@ -30,7 +30,7 @@ public class ApiUtils {
         requestSpecification = RestAssured.given();
     }
 
-    public static void setRequestQueryParameters(String key, Object value){
+    public static void setRequestQueryParameter(String key, Object value){
         requestSpecification.
                 queryParam(key, value);
     }
@@ -119,7 +119,6 @@ public class ApiUtils {
         if(response == null) {
             throw new RuntimeException("Response is null. Make sure the request was sent successfully before trying to obtain response.");
         }
-
         return response;
     }
 

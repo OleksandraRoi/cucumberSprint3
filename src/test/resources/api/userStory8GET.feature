@@ -7,7 +7,7 @@ Feature: usr story 8
 
   Scenario: getting a user information
   Given the correct key provided and the user is authenticated
-  Then the "Content-type" is "application/json"
+    And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
   Then the status code should be 201
@@ -17,14 +17,14 @@ Feature: usr story 8
   |Borrower Last Name|
   |Borrower Middle Name|
   |Total Loan Amount|
-  And The list of mortgage applications must be ordered by creation date (newest to oldest)
+    And the list of mortgage applications must be ordered by creation date newest to oldest
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
 
   Scenario: getting a user information as an administrator
   Given the correct key provided and the user is authenticated
-  Then the "Content-type" is "application/json"
+    And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
   Then the status code should be 201
@@ -37,26 +37,26 @@ Feature: usr story 8
 
   Scenario: getting a user information as not an administrator
   Given the correct key provided and the user is authenticated
-  Then the "Content-type" is "application/json"
+    And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
   Then the status code should be 201
   When the user making the request as not an administrator
   Then only mortgage applications associated with the user's user ID must be returned
-  And the list of mortgage applications must be ordered by creation date (newest to oldest)
+  And the list of mortgage applications must be ordered by creation date newest to oldest
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
 
   Scenario: getting a user information with non existing ID
   Given the correct key provided and the user is authenticated
-  Then the "Content-type" is "application/json"
+    And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
   Then the status code should be 201
   When there are no mortgage applications associated with the user ID
   Then an empty list must be returned
-  And the list of mortgage applications must be ordered by creation date (newest to oldest)
+  And the list of mortgage applications must be ordered by creation date newest to oldest
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 

@@ -1,15 +1,20 @@
 package stepDefinitions.api;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class userStory8GET {
 
+    @Given("the {string} header is set to JWT token generated from login endpoint")
+    public void the_header_is_set_to_jwt_token_generated_from_login_endpoint(String string) {
+
+    }
     @Then("the status code should be {int}")
     public void the_status_code_should_be(Integer int1) {
 
     }
-    @Then("the list of mortgage applications must be ordered by creation date \\(newest to oldest)")
+    @Then("the list of mortgage applications must be ordered by creation date newest to oldest")
     public void the_list_of_mortgage_applications_must_be_ordered_by_creation_date_newest_to_oldest() {
 
     }
