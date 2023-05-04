@@ -18,7 +18,7 @@ public class Driver {
     private Driver() {
     }
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
 
         String browser = System.getProperty("browser");
 

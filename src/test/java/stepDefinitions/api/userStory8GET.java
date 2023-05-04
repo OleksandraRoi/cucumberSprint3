@@ -3,16 +3,18 @@ package stepDefinitions.api;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.ApiUtils;
 
 public class userStory8GET {
 
     @Given("the {string} header is set to JWT token generated from login endpoint")
-    public void the_header_is_set_to_jwt_token_generated_from_login_endpoint(String string) {
-
+    public void the_header_is_set_to_jwt_token_generated_from_login_endpoint(String key) {
+        String jwtToken = ApiUtils.getJWTToken();
+        ApiUtils.setRequestHeader(key, jwtToken );
     }
     @Then("the status code should be {int}")
-    public void the_status_code_should_be(Integer int1) {
-
+    public void the_status_code_should_be(Integer status) {
+        ApiUtils.verifyResponseStatusCode(status);
     }
     @Then("the list of mortgage applications must be ordered by creation date newest to oldest")
     public void the_list_of_mortgage_applications_must_be_ordered_by_creation_date_newest_to_oldest() {
@@ -20,7 +22,7 @@ public class userStory8GET {
     }
 
     @When("the user making the request as an administrator, as type {int} user")
-    public void the_user_making_the_request_as_an_administrator_as_type_user(Integer int1) {
+    public void the_user_making_the_request_as_an_administrator_as_type_user(Integer admin) {
 
     }
     @Then("all mortgage applications in the system must be returned")

@@ -30,7 +30,7 @@ Feature: usr story 8
   Then the status code should be 201
   When the user making the request as an administrator, as type 1 user
   Then all mortgage applications in the system must be returned
-  And the list of mortgage applications must be ordered by creation date (newest to oldest)
+  And the list of mortgage applications must be ordered by creation date newest to oldest
   And JSON response and "Content-Type" header as "application/json"
   And the response must be less than 2000 ms
 
