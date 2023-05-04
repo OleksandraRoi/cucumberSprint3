@@ -40,7 +40,7 @@ public class ApiUtils {
                 pathParam(key, value);
     }
 
-    public static void setRequestHeaders(String key, Object value){
+    public static void setRequestHeader(String key, Object value){
         requestSpecification.
                 header(key, value);
     }
