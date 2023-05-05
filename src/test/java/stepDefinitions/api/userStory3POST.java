@@ -4,16 +4,19 @@ package stepDefinitions.api;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import org.junit.Assert;
 import utils.ApiUtils;
 import utils.ConfigReader;
 
-import java.util.Map;
+import java.util.*;
 
 public class userStory3POST {
 
+    Integer usersId;
     @Given("the correct key provided and the user is authenticated")
     public void the_correct_key_provided_and_the_user_is_authenticated() {
-        ApiUtils.setRequestQueryParameter("key", ConfigReader.getProperty("key"));
+        ApiUtils.setRequestQueryParameter("api_key", ConfigReader.getProperty("key"));
     }
     @Then("the header {string} is {string}")
     public void the_header_is(String key, String value) {
@@ -31,10 +34,38 @@ public class userStory3POST {
     public void the_response_log_is_shown() {
      ApiUtils.displayResponseLog();
     }
-    @Then("the following information should be displayed")
-    public void the_following_information_should_be_displayed(String body) {
+    @Given("the user id is extracted")
+    public void the_user_id_is_extracted() {
+        usersId = ApiUtils.getResponse().path("user_id");
+    }
+    @Then("the following key value information should be displayed")
+    public void the_following_key_value_information_should_be_displayed(List<String> expectedKeys) {
+        Response response = ApiUtils.getResponse();
+        Map<String, Object> map = response.jsonPath().getMap("");
+        Set<String> strings = map.keySet();
+        List<String> actualKeys = new ArrayList<>(strings);
+        Assert.assertEquals(expectedKeys,actualKeys);
 
+        Collection<Object> stringV = map.values();
+        List<Object> actualV = new ArrayList<>(stringV);
+        Object value1 = actualV.get(0);
+        Object value2 = actualV.get(1);
+        Object value3 = actualV.get(2);
+        Object value4 = actualV.get(3);
+        Assert.assertEquals(value1, "1");
+        Assert.assertEquals(value2, "201");
+        Assert.assertEquals(value3, "The user has been created");
+        Assert.assertEquals(value4, usersId);
 
+    }
+
+    @Then("the {string} query parameter is set to new user's id")
+    public void the_query_parameter_is_set_to_new_user_s_id(String key) {
+     ApiUtils.setRequestQueryParameter(key,usersId);
+    }
+    @Then("the response body key {string} must return {string}")
+    public void the_response_body_key_must_return(String key, String value) {
+        ApiUtils.verifyBasicResponseBody(key,value);
     }
     @Then("JSON response and {string} header as {string}")
     public void json_response_and_header_as(String key, String value) {
@@ -47,17 +78,16 @@ public class userStory3POST {
 
     @When("API key is not provided")
     public void api_key_is_not_provided() {
-    ApiUtils.setRequestQueryParameter("key", "");
+    ApiUtils.setRequestQueryParameter("api_key", ConfigReader.getProperty("key"+"123"));
     }
     @Then("{int} Unauthorized status code with error {string} {string} should be displayed")
     public void unauthorized_status_code_with_error_should_be_displayed(Integer error, String message, String text) {
     ApiUtils.verifyResponseStatusCode(error);
     ApiUtils.verifyBasicResponseBody(message, text);
-
     }
     @When("the following fields are missing or empty:")
-    public void the_following_fields_are_missing_or_empty(io.cucumber.datatable.DataTable dataTable) {
-
+    public void the_following_fields_are_missing_or_empty(String body) {
+    ApiUtils.setRequestBody(body);
     }
     @Then("API should return a {int} Unprocessable Entity error with a {string} {string}")
     public void api_should_return_a_unprocessable_entity_error_with_a(Integer error, String message, String text) {
@@ -65,54 +95,13 @@ public class userStory3POST {
         ApiUtils.verifyBasicResponseBody(message, text);
     }
 
-    @When("the email address is invalid")
-    public void the_email_address_is_invalid() {
-      ApiUtils.setRequestBody("{\n" +
-              "  \"username\": \"rockstar\",\n" +
-              "  \"firstName\": \"Eva\",\n" +
-              "  \"lastName\": \"Adamova\",\n" +
-              "  \"email\": \"123dd\",\n" +
-              "  \"password\": \"Pass123!\"\n" +
-              "}");
+    @When("the {string} is invalid")
+    public void the_is_invalid(String text, String body) {
+      ApiUtils.setRequestBody(body);
     }
-    @When("the password is invalid")
-    public void the_password_is_invalid() {
-        ApiUtils.setRequestBody("{\n" +
-                "  \"username\": \"rockstar\",\n" +
-                "  \"firstName\": \"Eva\",\n" +
-                "  \"lastName\": \"Adamova\",\n" +
-                "  \"email\": \"123eva@gmail.com\",\n" +
-                "  \"password\": \"123\"\n" +
-                "}");
-    }
-    @When("the first name is invalid")
-    public void the_first_name_is_invalid() {
-        ApiUtils.setRequestBody("{\n" +
-                "  \"username\": \"rockstar\",\n" +
-                "  \"firstName\": \"E\",\n" +
-                "  \"lastName\": \"Adamova\",\n" +
-                "  \"email\": \"123eva@gmail.com\",\n" +
-                "  \"password\": \"Pass123!\"\n" +
-                "}");
-    }
-    @When("the last name is invalid")
-    public void the_last_name_is_invalid() {
-        ApiUtils.setRequestBody("{\n" +
-                "  \"username\": \"rockstar\",\n" +
-                "  \"firstName\": \"Eva\",\n" +
-                "  \"lastName\": \"A\",\n" +
-                "  \"email\": \"123eva@gmail.com\",\n" +
-                "  \"password\": \"Pass123!\"\n" +
-                "}");
-    }
+
     @When("the email address is already in use")
-    public void the_email_address_is_already_in_use() {
-        ApiUtils.setRequestBody("{\n" +
-                "  \"username\": \"rockstar\",\n" +
-                "  \"firstName\": \"Eva\",\n" +
-                "  \"lastName\": \"Adamova\",\n" +
-                "  \"email\": \"shella.ferry@yahoo.com\",\n" +
-                "  \"password\": \"Pass123!\"\n" +
-                "}");
+    public void the_email_address_is_already_in_use(String body) {
+        ApiUtils.setRequestBody(body);
     }
 }
