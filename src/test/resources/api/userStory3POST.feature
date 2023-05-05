@@ -38,7 +38,7 @@ Feature: usr story 3
 
 
 
-  Scenario: error messages
+  Scenario: error message is empty
     Given the correct key provided and the user is authenticated
     Then the header "Content-type" is "application/json"
     When the following fields are missing or empty:
@@ -52,7 +52,11 @@ Feature: usr story 3
   """
     When the "POST" request is sent to "/user"
   Then API should return a 422 Unprocessable Entity error with a "message" "Missing or Invalid Required Fields!"
-  When the "email" is invalid
+
+  Scenario: error message invalid email
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    When the "email" is invalid
   """
   {
   "username": "rockstar",
@@ -64,9 +68,17 @@ Feature: usr story 3
   """
 
     When the "POST" request is sent to "/user"
-    Then the response log is shown
   Then API should return a 422 Unprocessable Entity error with a "message" "Invalid Email Address!"
-  When the "password" is invalid
+    Then the response log is shown
+    And JSON response and "Content-Type" header as "application/json"
+    And the response must be less than 5000 ms
+
+
+  Scenario: error message invalid password
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    When the "password" is invalid
+
 """
   {
   "username": "rockstar",
@@ -78,7 +90,14 @@ Feature: usr story 3
   """
     When the "POST" request is sent to "/user"
   Then API should return a 422 Unprocessable Entity error with a "message" "Password must be at least 8 characters long and contain at least one uppercase character, one lowercase character, one number, and one special symbol (!@#$%^&*()-_=+{};:,<.>)!"
-  When the "first name" is invalid
+    And the response log is shown
+    And JSON response and "Content-Type" header as "application/json"
+    And the response must be less than 5000 ms
+
+  Scenario: error message invalid first name
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    When the "first name" is invalid
 """
   {
   "username": "rockstar",
@@ -90,7 +109,14 @@ Feature: usr story 3
   """
     When the "POST" request is sent to "/user"
   Then API should return a 422 Unprocessable Entity error with a "message" "First name must be at least 2 characters long!"
-  When the "last name" is invalid
+    And the response log is shown
+    And JSON response and "Content-Type" header as "application/json"
+    And the response must be less than 5000 ms
+
+  Scenario: error message invalid last name
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    When the "last name" is invalid
 """
   {
   "username": "rockstar",
@@ -102,7 +128,14 @@ Feature: usr story 3
   """
     When the "POST" request is sent to "/user"
   Then API should return a 422 Unprocessable Entity error with a "message" "Last name must be at least 2 characters long!"
-  When the email address is already in use
+    And the response log is shown
+    And JSON response and "Content-Type" header as "application/json"
+    And the response must be less than 5000 ms
+
+  Scenario: error message email in use
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    When the email address is already in use
 """
   {
   "username": "rockstar",
@@ -114,6 +147,7 @@ Feature: usr story 3
   """
     When the "POST" request is sent to "/user"
     Then API should return a 422 Unprocessable Entity error with a "message" "This e-mail is already in use!"
+    Then the response log is shown
     And JSON response and "Content-Type" header as "application/json"
     And the response must be less than 5000 ms
 
