@@ -20,15 +20,15 @@ Feature: usr story 3
   When the "POST" request is sent to "/user"
   Then the response log is shown
     Given the user id is extracted
-#  Then the following key value information should be displayed
-#  |status   |
-#  |http_code|
-#  |message  |
-#  |user_id  |
+  Then the following key value information should be displayed
+  |status   |
+  |http_code|
+  |message  |
+  |user_id  |
 
-#    Given the correct key provided and the user is authenticated
-#    Then the header "Content-type" is "application/json"
-    And the "user_id" query parameter is set to new user's id
+    Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
+    And the "id" query parameter is set to new user's id
     When the "DELETE" request is sent to "/user"
     Then the response log is shown
     Then the status code should be 200

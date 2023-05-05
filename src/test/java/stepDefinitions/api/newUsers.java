@@ -11,6 +11,7 @@ public class newUsers {
     @Then("the {string} query parameter is set to")
     public void the_query_parameter_is_set_to(String key) {
         usersId = ApiUtils.getResponse().path("user_id");
+        System.out.println(usersId);
         ApiUtils.setRequestQueryParameter(key, usersId);
     }
     @Then("the body is set to")

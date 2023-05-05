@@ -41,7 +41,7 @@ public class userStory3POST {
     @Then("the following key value information should be displayed")
     public void the_following_key_value_information_should_be_displayed(List<String> expectedKeys) {
         Response response = ApiUtils.getResponse();
-        Map<String, Object> map = response.jsonPath().getMap("");
+        Map<String, Object> map = response.jsonPath().getMap("$");
         Set<String> strings = map.keySet();
         List<String> actualKeys = new ArrayList<>(strings);
         Assert.assertEquals(expectedKeys,actualKeys);
