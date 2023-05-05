@@ -3,7 +3,14 @@ package stepDefinitions.api;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import org.junit.Assert;
 import utils.ApiUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class userStory8GET {
 
@@ -15,6 +22,15 @@ public class userStory8GET {
     @Then("the status code should be {int}")
     public void the_status_code_should_be(Integer status) {
         ApiUtils.verifyResponseStatusCode(status);
+    }
+
+    @Then("the following keys should be displayed")
+    public void the_following_keys_should_be_displayed(List<String> expectedKeys) {
+        Response response = ApiUtils.getResponse();
+        Map<String, Object> map = response.jsonPath().getMap("[0]");
+        Set<String> strings = map.keySet();
+        List<String> actualKeys = new ArrayList<>(strings);
+        Assert.assertEquals(expectedKeys,actualKeys);
     }
     @Then("the list of mortgage applications must be ordered by creation date newest to oldest")
     public void the_list_of_mortgage_applications_must_be_ordered_by_creation_date_newest_to_oldest() {

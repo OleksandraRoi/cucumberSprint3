@@ -7,11 +7,12 @@ Feature: usr story 8
 
   Scenario: getting a user information
   Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
     And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
   Then the status code should be 201
-  Then the following information should be displayed
+  Then the following keys should be displayed
   |Application ID|
   |Borrower First Name|
   |Borrower Last Name|
@@ -22,8 +23,10 @@ Feature: usr story 8
   And the response must be less than 2000 ms
 
 
+
   Scenario: getting a user information as an administrator
   Given the correct key provided and the user is authenticated
+    Then the header "Content-type" is "application/json"
     And the "Authorization" header is set to JWT token generated from login endpoint
   When the "GET" request is sent to "/applications"
   Then the response log is shown
