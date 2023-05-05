@@ -42,7 +42,6 @@ public class UserStory2GET {
             response = requestSpecification.
                     when().log().all().get(endpoint);
 
-
         }}
 
         @Then("the response log should be displayed")
@@ -64,7 +63,6 @@ response.then().
 
         assertTrue(response.getContentType().startsWith(expectedContentType));
     }
-
 
     @When("I send {string} request with invalid user ID as a query parameter")
     public void i_send_request_with_invalid_user_id_as_a_query_parameter(String endpoint) {
